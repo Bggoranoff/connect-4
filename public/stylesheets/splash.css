@@ -11,7 +11,7 @@ body {
 #splashGrid {
     display: grid;
     grid-template-rows: 38vh 58vh;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 55% 45%;
     grid-row-gap: 5px;
     grid-column-gap: 5px;
 }
@@ -21,7 +21,6 @@ body {
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    border: solid red 1px;
     text-align: center;
     display: flex; 
     justify-content: center;
@@ -33,9 +32,8 @@ body {
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
-    border: solid red 1px;
     display: flex; 
-    justify-content: center;
+    justify-content: right;
     align-items: center;
 }
 
@@ -44,7 +42,6 @@ body {
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-    border: solid red 1px;
     display: flex; 
     justify-content: left;
     align-items: center;
@@ -53,7 +50,6 @@ body {
 #title {
     font-size: 3.5vw;
     width: 50%;
-    border: solid green 1px;
     background-image: url('/images/CloudFrame1.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -64,7 +60,6 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: solid green 1px;
     width: 50%;
 }
 
@@ -72,6 +67,50 @@ body {
     margin: 5px;
     width: 80%;
     height: 10vh;
+}
+
+#statsContainer {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+}
+
+.stat {
+    margin: 5px;
+    width: 80%;
+    height: 10vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-column-gap: 10px;
+}
+
+.statName {
+    background-image: url("/images/splash/statsName.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-family: silkscreen;
+    font-size: 2vw;
+    color: #3f51b5;
+}
+
+.statValue {
+    background-image: url("/images/splash/statsValue.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-family: silkscreen;
+    font-size: 2vw;
+    width: 100%;
+    color: #3f51b5;
 }
 
 form button {
