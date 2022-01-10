@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 
 /* Pressing the 'PLAY' takes you to this page */
 router.get('/play', function(req, res) {
-  res.sendFile("game.html", {root: "./public"});
+  res.render("game.ejs", {root: "./views"});
 });
 
 
