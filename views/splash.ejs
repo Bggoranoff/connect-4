@@ -8,24 +8,26 @@
     <link href="/stylesheets/splash.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <section id="cloudSection">
-        <div id="title">Connect 4</div>
-    </section>
-
-    <section id="statsSection">
-        <div id="activeRooms"></div>
-        <div id="averagePlaytime"></div>
-        <div id="totalGames"></div>
-    </section>
-
-    <section id="userSection">
-        <input type="text" id="username">
-        <form action="/play" method="get">
-            <button id="playButton">Play</button>
-        </form>
-        <form action="/rules" method="get">
-            <button id="rules">How To?</button>
-        </form>
-    </section>
+    <div id="splashGrid">
+        <section id="cloudSection">
+            <div id="title">Connect 4</div>
+        </section>
+    
+        <section id="statsSection">
+            <div id="activeRooms"></div>
+            <div id="averagePlaytime"></div>
+            <div id="totalGames"></div>
+        </section>
+    
+        <section id="userSection">
+            <input type="text" id="username">
+            <form action="/play" method="get">
+                <button id="playButton">Play</button>
+            </form>
+            <form action="/rules" method="get">
+                <button id="rules">How To?</button>
+            </form>
+        </section>
+    </div>
 </body>
 </html>
