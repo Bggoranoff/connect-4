@@ -31,6 +31,12 @@ body {
     }
 }
 
+@keyframes buttonSelect {
+    100% {
+        transform: scale(1.05);
+    }
+}
+
 #splashGrid {
     width: 100%;
     aspect-ratio: 2/0.91;
@@ -50,6 +56,16 @@ body {
     display: flex; 
     justify-content: center;
     align-items: center;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
 
 #statsSection {
@@ -125,6 +141,10 @@ body {
     color: #3f51b5;
 }
 
+.statName:hover {
+    background-image: url("/images/splash/statsNameSelected.png");
+}
+
 .statValue {
     background-image: url("/images/splash/statsValue.png");
     background-repeat: no-repeat;
@@ -138,6 +158,10 @@ body {
     color: #3f51b5;
 }
 
+.statValue:hover {
+    background-image: url("/images/splash/statsValueSelected.png");
+}
+
 form button {
     font-family: silkscreen;
     font-size: 2vw;
@@ -149,6 +173,12 @@ form button {
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+}
+
+form button:hover {
+    cursor: pointer;
+    background-image: url('/images/splash/buttonSelected.png');
+    animation: buttonSelect 0.1s forwards;
 }
 
 #usernameContainer {
