@@ -8,9 +8,34 @@ body {
     background-color: #bbdefb;
 }
 
+.drop {
+    position: absolute;
+    height: 3vw;
+    width: 3vw;
+    background-image: url('/images/LastDrop.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(0%);
+    }
+
+    50% {
+        transform: translateY(37.5vh);
+    }
+
+    100% {
+        transform: translateY(75vh);
+    }
+}
+
 #splashGrid {
+    width: 100%;
+    aspect-ratio: 2/0.91;
     display: grid;
-    grid-template-rows: 38vh 58vh;
+    grid-template-rows: 38% 58%;
     grid-template-columns: 55% 45%;
     grid-row-gap: 5px;
     grid-column-gap: 5px;
@@ -66,7 +91,7 @@ body {
 .formItem {
     margin: 5px;
     width: 80%;
-    height: 10vh;
+    aspect-ratio: 2/0.7;
 }
 
 #statsContainer {
@@ -80,7 +105,7 @@ body {
 .stat {
     margin: 5px;
     width: 80%;
-    height: 10vh;
+    aspect-ratio: 2.9/0.7;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: grid;
