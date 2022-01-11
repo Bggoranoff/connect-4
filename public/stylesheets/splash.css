@@ -1,11 +1,58 @@
+@font-face {
+    font-family: silkscreen;
+    src: url("/fonts/slkscr.ttf");
+}
+
 body {
+    font-family: silkscreen;
     background-color: #bbdefb;
+    animation: bodyBackground 4s linear infinite;
+}
+
+.drop {
+    position: absolute;
+    height: 3vw;
+    width: 3vw;
+    background-image: url('/images/LastDrop.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(0%);
+    }
+
+    50% {
+        transform: translateY(37.5vh);
+    }
+
+    100% {
+        transform: translateY(75vh);
+    }
+}
+
+@keyframes buttonSelect {
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes bodyBackground {
+    50% {
+        background-color: #b4cce0;
+    }
+    100% {
+        background-color: #bbdefb;
+    }
 }
 
 #splashGrid {
+    width: 100%;
+    aspect-ratio: 2/0.91;
     display: grid;
-    grid-template-rows: 38vh 58vh;
-    grid-template-columns: 60% 40%;
+    grid-template-rows: 38% 58%;
+    grid-template-columns: 55% 45%;
     grid-row-gap: 5px;
     grid-column-gap: 5px;
 }
@@ -15,7 +62,20 @@ body {
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    border: solid red 1px;
+    text-align: center;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
 
 #statsSection {
@@ -23,7 +83,9 @@ body {
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
-    border: solid red 1px;
+    display: flex; 
+    justify-content: right;
+    align-items: center;
 }
 
 #userSection {
@@ -31,12 +93,124 @@ body {
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-    border: solid red 1px;
+    display: flex; 
+    justify-content: left;
+    align-items: center;
 }
 
 #title {
+    font-size: 3.5vw;
+    width: 50%;
+    background-image: url('/images/CloudFrame1.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#userForm {
     display: flex; 
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
-    font-size: 4vw;
+    flex-direction: column;
+    width: 50%;
+}
+
+.formItem {
+    margin: 5px;
+    width: 80%;
+    aspect-ratio: 2/0.7;
+}
+
+#statsContainer {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+}
+
+.stat {
+    margin: 5px;
+    width: 80%;
+    aspect-ratio: 2.9/0.7;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-column-gap: 10px;
+}
+
+.statName {
+    background-image: url("/images/splash/statsName.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-family: silkscreen;
+    font-size: 2vw;
+    color: #3f51b5;
+}
+
+.statName:hover {
+    background-image: url("/images/splash/statsNameSelected.png");
+}
+
+.statValue {
+    background-image: url("/images/splash/statsValue.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-family: silkscreen;
+    font-size: 2vw;
+    width: 100%;
+    color: #3f51b5;
+}
+
+.statValue:hover {
+    background-image: url("/images/splash/statsValueSelected.png");
+}
+
+form button {
+    font-family: silkscreen;
+    font-size: 2vw;
+    border: none;
+    width: 100%;
+    color: #3f51b5;
+    height: 100%;
+    background-image: url('/images/splash/button.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+form button:hover {
+    cursor: pointer;
+    background-image: url('/images/splash/buttonSelected.png');
+    animation: buttonSelect 0.1s forwards;
+}
+
+#usernameContainer {
+    border: none;
+    background-image: url('/images/splash/usernameField.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+#usernameInput {
+    background-color: transparent;
+    font-family: silkscreen;
+    font-size: 2vw;
+    color: #2196f3;
+    width: 80%;
+    border: none;
+}
+
+#usernameInput:focus {
+    outline: none;
 }
