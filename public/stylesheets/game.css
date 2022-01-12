@@ -12,6 +12,16 @@
     }
 }
 
+@keyframes bodyBackground {
+    50% {
+        background-color: #b4cce0;
+    }
+    100% {
+        background-color: #bbdefb;
+    }
+
+}
+
 .drop {
     position: absolute;
     background-repeat: no-repeat;
@@ -23,7 +33,7 @@
 body {
     background-color: #bbdefb;
     animation: bodyBackground 4s linear infinite;
-    min-width: 400px;
+    /* min-width: 400px; */
 }
 
 #gameScreen {
@@ -51,10 +61,28 @@ body {
     font-size: 3.5vw;
     font-family: silkscreen;
     -webkit-text-fill-color: transparent;
-    
-    background-image: url('/images/CloudFrame1.png');
+    animation: movingCloud 8s linear infinite;
+    /* background-image: url('/images/CloudFrame1.png'); */
     background-repeat: no-repeat;
     background-size: 100% 100%;
+}
+
+@keyframes movingCloud {
+    0% {
+        background-image: url('/images/CloudFrame1.png');
+    }
+    25% {
+        background-image: url('/images/CloudFrame2New.png');
+    }
+    50% {
+        background-image: url('/images/CloudFrame2.png');
+    }
+    75% {
+        background-image: url('/images/CloudFrame2New.png');
+    }
+    100% {
+        background-image: url('/images/CloudFrame1.png');
+    }
 }
 
 #gridSection {
@@ -92,9 +120,10 @@ body {
 }
 
 
-#board * {
+#board .column .cell {
     width: 100%;
     height: 100%;
+    z-index: -10;
 }
 
 #bottomSection {
