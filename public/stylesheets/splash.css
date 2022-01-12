@@ -83,7 +83,7 @@
 #title {
     font-size: 3.5vw;
     width: 50%;
-    background-image: url('/images/CloudFrame1.png');
+    animation: movingCloud 8s linear infinite;
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
