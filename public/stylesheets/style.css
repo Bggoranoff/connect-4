@@ -12,6 +12,24 @@
   }
 }
 
+@keyframes movingCloud {
+  0% {
+      background-image: url('/images/CloudFrame1.png');
+  }
+  25% {
+      background-image: url('/images/CloudFrame2New.png');
+  }
+  50% {
+      background-image: url('/images/CloudFrame2.png');
+  }
+  75% {
+      background-image: url('/images/CloudFrame2New.png');
+  }
+  100% {
+      background-image: url('/images/CloudFrame1.png');
+  }
+}
+
 body {
   font-family: silkscreen;
   background-color: #bbdefb;
