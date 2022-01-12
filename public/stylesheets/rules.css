@@ -1,3 +1,5 @@
+@import "style.css";
+
 @font-face {
     font-family: silkscreen;
     src: url("/fonts/slkscr.ttf");
@@ -9,13 +11,6 @@
     }
     100% {
         background-color: #bbdefb;
-    }
-}
-
-@keyframes linkSelect {
-    100% {
-        -webkit-transform: scale(1.05);
-        opacity: 0.9;
     }
 }
 
@@ -67,18 +62,4 @@ li {
 
 h2 {
     font-size: 2.7vw;
-}
-
-a:visited {
-    color: gray;
-}
-
-a {
-    color: gray;
-}
-
-a:hover {
-    cursor: pointer;
-    animation: linkSelect 0.1s forwards;
-    display: inline-block;
 }

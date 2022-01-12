@@ -18,5 +18,4 @@ router.get('/rules', function(req, res) {
   res.render("rules.ejs", {});
 });
 
-
 module.exports = router;

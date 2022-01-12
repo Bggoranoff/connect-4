@@ -12,6 +12,12 @@
   }
 }
 
+@keyframes linkSelect {
+  100% {
+      -webkit-transform: scale(1.05);
+      opacity: 0.9;
+  }
+}
 @keyframes movingCloud {
   0% {
       background-image: url('/images/CloudFrame1.png');
@@ -34,5 +40,19 @@ body {
   font-family: silkscreen;
   background-color: #bbdefb;
   animation: bodyBackground 4s linear infinite;
+}
+
+a:visited {
+  color: gray;
+}
+
+a {
+  color: gray;
+}
+
+a:hover {
+  cursor: pointer;
+  animation: linkSelect 0.1s forwards;
+  display: inline-block;
 }
 
