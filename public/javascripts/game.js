@@ -5,13 +5,13 @@ const player = new Player();
         let columnIndex = parseInt(element.id.replace("column", ""));
         if (player.makeMove(columnIndex)) {
             let move = player.lastMove;
-            console.log(player);
             let cellId = "cell" + move[0] + "" + move[1];
-            console.log(cellId);
             let cell = document.getElementById(cellId);
+
             let drop = document.createElement("div");
             let cloud = document.getElementById("cloudBox").getBoundingClientRect();
             drop.className = "drop";
+
             drop.style.backgroundImage = "url('/images/LastDrop.png')";
             drop.style.width = cell.getBoundingClientRect().width + "px";
             drop.style.height = cell.getBoundingClientRect().height + "px";
@@ -27,6 +27,7 @@ const player = new Player();
                 "px"
             );
             drop.style.animationFillMode = "forwards";
+
             document.getElementById("gameScreen").appendChild(drop);
             setTimeout(() => {
                 drop.remove();
