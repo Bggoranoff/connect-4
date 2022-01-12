@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,27 +8,62 @@
     <title>Connect 4</title>
     <link href="/stylesheets/splash.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
     <div id="splashGrid">
         <section id="cloudSection">
-            <div id="title">Connect 4</div>
+            <div id="title">
+                <h1 class="noselect">
+                    Connect<sup>4</sup>
+                </h1>
+            </div>
         </section>
-    
+
         <section id="statsSection">
-            <div id="activeRooms"></div>
-            <div id="averagePlaytime"></div>
-            <div id="totalGames"></div>
+            <div id="statsContainer">
+                <div class="stat">
+                    <div class="statName noselect">
+                        Active Rooms
+                    </div>
+                    <div class="statValue noselect">
+                        42
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="statName noselect">
+                        Avg Playtime
+                    </div>
+                    <div class="statValue noselect">
+                        02:15
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="statName noselect">
+                        Games Played
+                    </div>
+                    <div class="statValue noselect">
+                        1000
+                    </div>
+                </div>
+            </div>
         </section>
-    
+
         <section id="userSection">
-            <input type="text" id="username">
-            <form action="/play" method="get">
-                <button id="playButton">Play</button>
-            </form>
-            <form action="/rules" method="get">
-                <button id="rules">How To?</button>
-            </form>
+            <div id="userForm">
+                <div id="usernameContainer" class="formItem">
+                    <input id="usernameInput" type="text" id="username">
+                </div>
+                <form class="formItem" action="/play" method="get">
+                    <button id="playButton">Play</button>
+                </form>
+                <form class="formItem" action="/rules" method="get">
+                    <button id="rulesButton">How To?</button>
+                </form>
+            </div>
         </section>
     </div>
 </body>
+
+<script src="javascripts/splash.js"></script>
+
 </html>
