@@ -1,6 +1,7 @@
 const express = require("express");
 const http = require("http");
 const router = require("./routes");
+const websocket = require("ws");
 
 const messages = require("./public/javascripts/messages");
 const stats = require("./stats");
