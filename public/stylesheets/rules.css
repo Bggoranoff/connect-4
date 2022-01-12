@@ -27,20 +27,24 @@ body {
 
 #rulesGrid {
     width: 100%;
-    aspect-ratio: 2/0.91;
+    aspect-ratio: 2/0.96;
     display: grid;
     grid-template-columns: 58% 41.7%;
     grid-row-gap: 5px;
     grid-column-gap: 5px;
 }
 
-.gridElement {
-    border: 1px solid red;
+img {
+    width: 85%;
+    aspect-ratio: 1/0.82;
+    border: .5vw solid black;
+    border-radius: 1%;
 }
 
-img {
-    width: 100%;
-    aspect-ratio: 1/0.82;
+#videoSection {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
 }
 
 #rulesSection {
