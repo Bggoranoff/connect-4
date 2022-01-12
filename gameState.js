@@ -40,14 +40,14 @@ var GameState = function (id) {
 
         mark(symbol, row, column);
         setLastMove(row, column);
-        if (checkForWin()) {
-            setWinner(symbol);
-            endGame();
-        }
     };
 
     var mark = function (symbol, row, column) {
         board[row][column] = symbol;
+        if (checkForWin()) {
+            setWinner(symbol);
+            endGame();
+        }
     };
 
     var setLastMove = function (row, column) {
