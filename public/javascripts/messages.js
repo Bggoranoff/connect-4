@@ -1,0 +1,8 @@
+module.exports = {
+    MAKE_MOVE: "MAKE-MOVE",
+    BEGIN_GAME: "BEGIN-GAME",
+    ABORT_GAME: "ABORT-GAME",
+    GAME_OVER: "GAME-OVER",
+    GAME_WON_BY: "GAME-WON-BY",
+    WANT_REMATCH: "WANT-REMATCH"
+};

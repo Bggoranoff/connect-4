@@ -136,3 +136,5 @@ var gameState = (function () {
 	    setWinner
     };
 })();
+
+module.exports = gameState;

@@ -1,3 +1,5 @@
+
+
 [...document.getElementsByClassName("column")].forEach((element) => {
     element.addEventListener("click", (event) => {
         let cell = element.children[5];
