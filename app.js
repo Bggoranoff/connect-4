@@ -9,4 +9,8 @@ app.use("/", router);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
+app.use(function(req, res) {
+    res.render("error.ejs", {});
+});
+
 http.createServer(app).listen(port);
