@@ -1,4 +1,4 @@
-var Player = function () {
+var Player = function (socket) {
 
     var username;
     
@@ -40,6 +40,10 @@ var Player = function () {
 
         mark(symbol, row, column);
         setLastMove(row, column);
+
+        let msg = messages.MAKE_MOVE;
+        msg.move = lastMove;
+        socket.send(JSON.stringify(msg));
         return true;
     };
 
@@ -56,6 +60,7 @@ var Player = function () {
         isWinner,
         makeMove,
         mark,
-        lastMove
+        lastMove,
+        setLastMove
     }
 };
