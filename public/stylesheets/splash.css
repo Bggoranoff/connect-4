@@ -1,13 +1,4 @@
-@font-face {
-    font-family: silkscreen;
-    src: url("/fonts/slkscr.ttf");
-}
-
-body {
-    font-family: silkscreen;
-    background-color: #bbdefb;
-    animation: bodyBackground 4s linear infinite;
-}
+@import "style.css";
 
 .drop {
     position: absolute;
@@ -28,22 +19,13 @@ body {
     }
 
     100% {
-        transform: translateY(75vh);
+        transform: translateY(var(--h));
     }
 }
 
 @keyframes buttonSelect {
     100% {
         transform: scale(1.05);
-    }
-}
-
-@keyframes bodyBackground {
-    50% {
-        background-color: #b4cce0;
-    }
-    100% {
-        background-color: #bbdefb;
     }
 }
 

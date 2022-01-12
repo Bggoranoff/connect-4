@@ -1,8 +1,20 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@font-face {
+  font-family: silkscreen;
+  src: url("/fonts/slkscr.ttf");
 }
 
-a {
-  color: #00B7FF;
+@keyframes bodyBackground {
+  50% {
+      background-color: #b4cce0;
+  }
+  100% {
+      background-color: #bbdefb;
+  }
 }
+
+body {
+  font-family: silkscreen;
+  background-color: #bbdefb;
+  animation: bodyBackground 4s linear infinite;
+}
+

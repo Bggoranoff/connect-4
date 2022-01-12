@@ -11,7 +11,7 @@ function makeDrop(image) {
     drop.style.top = cloudRect.bottom + window.scrollY - cloudRect.height / 2 + "px";
     drop.style.zIndex = -10;
     drop.style.backgroundImage = image;
-
+    drop.style.setProperty("--h", (9.3 * window.innerHeight / 10 - (cloudRect.bottom + window.scrollY - cloudRect.height / 2)) + "px");
     document.getElementById("splashGrid").appendChild(drop);
     drop.style.animation = "drop 4s linear infinite";
 

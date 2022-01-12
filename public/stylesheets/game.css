@@ -1,7 +1,4 @@
-@font-face {
-    font-family: silkscreen;
-    src: url("/fonts/slkscr.ttf");
-}
+@import "style.css";
 
 @keyframes drop {
     0% {
@@ -12,28 +9,10 @@
     }
 }
 
-@keyframes bodyBackground {
-    50% {
-        background-color: #b4cce0;
-    }
-    100% {
-        background-color: #bbdefb;
-    }
-
-}
-
 .drop {
     position: absolute;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-}
-
-
-
-body {
-    background-color: #bbdefb;
-    animation: bodyBackground 4s linear infinite;
-    /* min-width: 400px; */
 }
 
 #gameScreen {
