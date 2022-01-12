@@ -1,0 +1,80 @@
+@font-face {
+    font-family: silkscreen;
+    src: url("/fonts/slkscr.ttf");
+}
+
+@keyframes bodyBackground {
+    50% {
+        background-color: #b4cce0;
+    }
+    100% {
+        background-color: #bbdefb;
+    }
+}
+
+@keyframes linkSelect {
+    100% {
+        -webkit-transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+body {
+    font-family: silkscreen;
+    background-color: #bbdefb;
+    animation: bodyBackground 4s linear infinite;
+}
+
+#rulesGrid {
+    width: 100%;
+    aspect-ratio: 2/0.91;
+    display: grid;
+    grid-template-columns: 58% 41.7%;
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
+}
+
+.gridElement {
+    border: 1px solid red;
+}
+
+img {
+    width: 100%;
+    aspect-ratio: 1/0.82;
+}
+
+#rulesSection {
+    display: flex; 
+    justify-content: left;
+    align-items: center;
+}
+
+#rulesContainer {
+    margin: 5px;
+}
+
+p {
+    font-size: 1.4vw;
+}
+
+li {
+    font-size: 1.2vw;
+}
+
+h2 {
+    font-size: 2.7vw;
+}
+
+a:visited {
+    color: gray;
+}
+
+a {
+    color: gray;
+}
+
+a:hover {
+    cursor: pointer;
+    animation: linkSelect 0.1s forwards;
+    display: inline-block;
+}
