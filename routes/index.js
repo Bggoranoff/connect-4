@@ -13,5 +13,10 @@ router.get('/play', function(req, res) {
   res.render("game.ejs", {root: "./views"});
 });
 
+/* Pressing the 'HOW TO' takes you to this page */
+router.get('/rules', function(req, res) {
+  res.render("rules.ejs", {});
+});
+
 
 module.exports = router;
