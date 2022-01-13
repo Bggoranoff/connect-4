@@ -25,7 +25,7 @@
                     <div class="statName noselect">
                         Active Rooms
                     </div>
-                    <div class="statValue noselect">
+                    <div id="activeRooms" class="statValue noselect">
                         42
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <div class="statName noselect">
                         Avg Playtime
                     </div>
-                    <div class="statValue noselect">
+                    <div id="averagePlaytime" class="statValue noselect">
                         02:15
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                     <div class="statName noselect">
                         Games Played
                     </div>
-                    <div class="statValue noselect">
+                    <div id="totalGames" class="statValue noselect">
                         1000
                     </div>
                 </div>
@@ -62,8 +62,9 @@
             </div>
         </section>
     </div>
-</body>
 
-<script src="javascripts/splash.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="javascripts/splash.js"></script>
+</body>
 
 </html>

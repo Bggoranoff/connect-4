@@ -29,4 +29,27 @@ function animate() {
     }, rand);
 }
 
+function updateStats() {
+    setTimeout(() => {
+        axios.get("/stats")
+            .then(res => {
+                const stats = res.data;
+                document.getElementById("totalGames").innerText = stats.totalGames;
+
+                let minutes = stats.averagePlaytime / 60;
+                minutes = minutes.toString().length == 1 ? "0" + minutes.toString() : minutes.toString();
+                let seconds = stats.averagePlaytime % 60;
+                seconds = seconds.toString().length == 1 ? "0" + seconds.toString() : seconds.toString();
+                document.getElementById("averagePlaytime").innerText = minutes + ":" + seconds;
+
+                document.getElementById("activeRooms").innerText = stats.activeRooms;
+                updateStats();
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, 1000)
+}
+
+updateStats();
 animate();

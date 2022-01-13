@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var stats = require("../stats");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -18,8 +18,12 @@ router.get('/rules', function(req, res) {
   res.render("rules.ejs", {});
 });
 
+router.get('/stats', function(req, res) {
+  res.send(JSON.stringify(stats));
+})
+
 router.get('/*', function(req, res) {
   res.render("error.ejs", {});
-})
+});
 
 module.exports = router;
