@@ -20,10 +20,6 @@ app.use(express.static(__dirname + "/public"));
 
 app.use("/", router);
 
-app.use(function(req, res) {
-    res.render("error.ejs", {});
-});
-
 const server = http.createServer(app);
 const wss = new websocket.Server({ server });
 
