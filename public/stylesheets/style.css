@@ -42,6 +42,18 @@ body {
   animation: bodyBackground 4s linear infinite;
 }
 
+#screenMessage {
+  margin-top: 30vh;
+}
+
+h1 {
+  font-size: 3.5vw;
+}
+
+p {
+  font-size: 1.5vw;
+}
+
 a:visited {
   color: gray;
 }

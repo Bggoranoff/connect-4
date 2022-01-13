@@ -1,0 +1,35 @@
+@import "style.css";
+
+@keyframes dot {
+    0% {
+        transform: translateY(0%);
+    } 
+    100% {
+        transform: translateY(-1vh);
+    }
+}
+
+
+body {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+}
+
+#firstDot {
+    animation: dot 1s linear infinite alternate;
+    display: inline-block;
+}
+
+#secondDot {
+    animation: dot 1s linear infinite alternate;
+    animation-delay: 0.3s;
+    display: inline-block;
+}
+
+#thirdDot {
+    animation: dot 1s linear infinite alternate;
+    animation-delay: 0.6s;
+    display: inline-block;
+}

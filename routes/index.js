@@ -18,12 +18,18 @@ router.get('/rules', function(req, res) {
   res.render("rules.ejs", {});
 });
 
+router.get('/waiting', function(req, res) {
+  res.render("waiting.ejs", {});
+});
+
 router.get('/stats', function(req, res) {
   res.send(JSON.stringify(stats));
-})
+});
 
 router.get('/*', function(req, res) {
   res.render("error.ejs", {});
 });
+
+
 
 module.exports = router;
