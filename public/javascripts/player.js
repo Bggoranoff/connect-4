@@ -44,6 +44,7 @@ var Player = function (socket) {
         let msg = messages.MAKE_MOVE;
         msg.move = lastMove;
         socket.send(JSON.stringify(msg));
+        disableClicks();
         return true;
     };
 

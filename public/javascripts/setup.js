@@ -12,12 +12,19 @@ socket.onmessage = function(event) {
             document.getElementById("gameScreen").style.visibility = "visible";
             document.getElementById("screenMessage").remove();
             player.setSymbol(msg.symbol);
+
+            if(player.symbol == 1) {
+                enableClicks();
+            } else {
+                disableClicks();
+            }
         };
         break;
         case messages.MAKE_MOVE.type: {
             player.mark(3 - player.symbol, msg.move[0], msg.move[1]);
             player.setLastMove(msg.move[0], msg.move[1]);
             visualiseMove(3 - player.symbol);
+            enableClicks();
         };
         break;
     }

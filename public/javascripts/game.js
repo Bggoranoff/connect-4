@@ -1,13 +1,27 @@
 [...document.getElementsByClassName("column")].forEach((element) => {
-    element.addEventListener("click", () => {
-        let columnIndex = parseInt(element.id.replace("column", ""));
+    element.addEventListener("click", () => clickColumn(element));
+});
+
+function enableClicks() {
+    [...document.getElementsByClassName("column")].forEach((element) => {
+        element.style.pointerEvents = "auto";
+    });
+}
+
+function disableClicks() {
+    [...document.getElementsByClassName("column")].forEach((element) => {
+        element.style.pointerEvents = "none";
+    });
+}
+
+function clickColumn(element) {
+    let columnIndex = parseInt(element.id.replace("column", ""));
         if (player.makeMove(columnIndex)) {
             visualiseMove(player.symbol);
         } else {
             alert("Invalid move!");
         }
-    });
-});
+}
 
 function visualiseMove(symbol) {
     let image = symbol === 1 ? "url('/images/LastDrop.png')" : "url('/images/LastSnowflake.png')";
