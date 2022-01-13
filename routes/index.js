@@ -18,8 +18,14 @@ router.get('/rules', function(req, res) {
   res.render("rules.ejs", {});
 });
 
+router.get('/waiting', function(req, res) {
+  res.render("waiting.ejs", {});
+})
+
 router.get('/*', function(req, res) {
   res.render("error.ejs", {});
 })
+
+
 
 module.exports = router;

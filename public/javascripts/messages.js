@@ -3,9 +3,19 @@
             type: "MAKE-MOVE",
             move: null
         };
-        exports.BEGIN_GAME = "BEGIN-GAME";
-        exports.ABORT_GAME = "ABORT-GAME";
-        exports.GAME_OVER = "GAME-OVER";
-        exports.GAME_WON_BY = "GAME-WON-BY";
-        exports.WANT_REMATCH = "WANT-REMATCH";
+        exports.BEGIN_GAME = {
+            type: "BEGIN-GAME"
+        };
+        exports.ABORT_GAME = {
+            type: "ABORT-GAME"
+        };
+        exports.GAME_OVER = {
+            type: "GAME-OVER"
+        };
+        exports.GAME_WON_BY = {
+            type: "GAME-WON-BY"
+        };
+        exports.WANT_REMATCH = {
+            type: "WANT-REMATCH"
+        };
 })(typeof exports === "undefined" ? (this.messages = {}) : exports);
