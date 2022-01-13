@@ -2,7 +2,7 @@ var Player = function (socket) {
 
     var username;
     
-    var symbol = 1;
+    var symbol = 0;
 
     var board = [
         [0, 0, 0, 0, 0, 0, 0],
@@ -51,6 +51,10 @@ var Player = function (socket) {
         board[row][column] = symbol;
     };
 
+    var setSymbol = function (newSymbol) {
+        this.symbol = newSymbol;
+    };
+
     return {
         username,
         symbol,
@@ -61,6 +65,7 @@ var Player = function (socket) {
         makeMove,
         mark,
         lastMove,
-        setLastMove
+        setLastMove,
+        setSymbol
     }
 };

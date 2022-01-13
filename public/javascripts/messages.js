@@ -4,7 +4,8 @@
             move: null
         };
         exports.BEGIN_GAME = {
-            type: "BEGIN-GAME"
+            type: "BEGIN-GAME",
+            symbol: 0
         };
         exports.ABORT_GAME = {
             type: "ABORT-GAME"

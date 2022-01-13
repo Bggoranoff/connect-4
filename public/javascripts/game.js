@@ -2,7 +2,7 @@
     element.addEventListener("click", () => {
         let columnIndex = parseInt(element.id.replace("column", ""));
         if (player.makeMove(columnIndex)) {
-            visualiseMove(1);
+            visualiseMove(player.symbol);
         } else {
             alert("Invalid move!");
         }

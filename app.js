@@ -26,30 +26,37 @@ const wss = new websocket.Server({ server });
 const websockets = {};
 
 let connectionId = 0;
-let currentGame = new GameState(0);
+let currentGame = new GameState(stats.activeRooms++);
 
 wss.on("connection", ws => {
     ws.id = connectionId++;
+    console.log("Connect");
 
     let playerSymbol = currentGame.addPlayer(ws);
-    if(playerSymbol == 0) {
-        currentGame = new GameState(++stats.activeRooms);
-        playerSymbol = currentGame.addPlayer(ws);
-    }
 
     websockets[ws.id] = currentGame;
-
-    // console.log(currentGame);
+    if(playerSymbol == 2) {
+        console.log("Second connected");
+        let firstMessage = messages.BEGIN_GAME;
+        firstMessage.symbol = playerSymbol;
+        ws.send(JSON.stringify(firstMessage));
+        let secondMessage = messages.BEGIN_GAME;
+        secondMessage.symbol = 3 - playerSymbol;
+        currentGame.getPlayer(3 - playerSymbol).send(JSON.stringify(secondMessage));
+        currentGame = new GameState(stats.activeRooms++);
+    }
 
     ws.on("message", bin => {
         let msg = JSON.parse(bin.toString());
-        
-        if(msg.type === messages.MAKE_MOVE.type) {
-            websockets[ws.id].mark(playerSymbol, msg.move[0], msg.move[1]);
-            let player = currentGame.getPlayer(3 - playerSymbol);
-            player.send(JSON.stringify(msg));
+
+        switch(msg.type) {
+            case messages.MAKE_MOVE.type: {
+                websockets[ws.id].mark(playerSymbol, msg.move[0], msg.move[1]);
+                let player = websockets[ws.id].getPlayer(3 - playerSymbol);
+                player.send(JSON.stringify(msg));
+            };
+            break;
         }
-        console.log(msg);
     });
 });
 
