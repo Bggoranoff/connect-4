@@ -14,7 +14,7 @@
         <section id="cloudSection">
             <div id="title">
                 <h1 class="noselect">
-                    Connect<sup>4</sup>
+                    <sup>4</sup>
                 </h1>
             </div>
         </section>
@@ -25,24 +25,24 @@
                     <div class="statName noselect">
                         Active Rooms
                     </div>
-                    <div class="statValue noselect">
-                        42
+                    <div id="activeRooms" class="statValue noselect">
+                        <%- activeRooms %>
                     </div>
                 </div>
                 <div class="stat">
                     <div class="statName noselect">
                         Avg Playtime
                     </div>
-                    <div class="statValue noselect">
-                        02:15
+                    <div id="averagePlaytime" class="statValue noselect">
+                        <%- minutes + ":" + seconds %>
                     </div>
                 </div>
                 <div class="stat">
                     <div class="statName noselect">
                         Games Played
                     </div>
-                    <div class="statValue noselect">
-                        1000
+                    <div id="totalGames" class="statValue noselect">
+                        <%- totalGames %>
                     </div>
                 </div>
             </div>
@@ -57,13 +57,14 @@
                     <button id="playButton">Play</button>
                 </form>
                 <form class="formItem" action="/rules" method="get">
-                    <button id="rulesButton">How To?</button>
+                    <button id="rulesButton">How To</button>
                 </form>
             </div>
         </section>
     </div>
-</body>
 
-<script src="javascripts/splash.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="javascripts/splash.js"></script>
+</body>
 
 </html>

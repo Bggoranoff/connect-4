@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
-
+var stats = require("../stats");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render("splash.ejs", {});
+  let minutes = Math.round(stats.averagePlaytime / 60);
+  minutes = minutes.toString().length == 1 ? "0" + minutes.toString() : minutes.toString();
+  let seconds = stats.averagePlaytime % 60;
+  seconds = seconds.toString().length == 1 ? "0" + seconds.toString() : seconds.toString();
+  res.render("splash.ejs", { totalGames: Math.ceil(stats.totalGames), activeRooms: Math.floor(stats.activeRooms), minutes, seconds });
 });
 
 
@@ -17,5 +21,23 @@ router.get('/play', function(req, res) {
 router.get('/rules', function(req, res) {
   res.render("rules.ejs", {});
 });
+
+router.get('/waiting', function(req, res) {
+  res.render("waiting.ejs", {});
+});
+
+router.get('/loss', function(req, res) {
+  res.render("losing.ejs", {});
+});
+
+router.get('/stats', function(req, res) {
+  res.send(JSON.stringify(stats));
+});
+
+router.get('/*', function(req, res) {
+  res.render("error.ejs", {});
+});
+
+
 
 module.exports = router;

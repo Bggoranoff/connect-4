@@ -106,17 +106,25 @@
 
 #firstUserSection {
     grid-column: 1 / span 1;
-    
     display: grid;
-    grid-template-columns: 25% 75%;
-    
-
+    grid-template-columns: 100%;
 }
 
-#firstPlayerAvatar {
+/* #firstPlayerAvatar {
     width: 3.8vw;
     margin-top: 0.5vw;
     height: auto;
+} */
+
+#usernameFirst::before {
+    content: "";
+    background-image: url("/images/avatarOwl.png");
+    background-size: 3.8vw 3.8vw;
+    display: inline-block;
+    width: 3.8vw;
+    height: 3.8vw;
+    margin-top: 0.5vw;
+    margin-right: 0.5vw;
 }
 
 #usernameFirst {
@@ -125,8 +133,11 @@
     align-items: center;
     font-size: 1.7vw;
     margin-left: 5%;
-    
     font-family: silkscreen;
+}
+
+#usernameFirst:hover {
+    animation: bounce 0.1s forwards;
 }
 
 #timerSection {
@@ -142,11 +153,8 @@
 
 #secondUserSection {
     grid-column: 3 / span 1;
-
     display: grid;
-    grid-template-columns: 75% 25%;
-        
-
+    grid-template-columns: 100%;
 }
 
 #usernameSecond {
@@ -155,14 +163,135 @@
     align-items: center;
     margin-right: 5%;
     font-size: 1.7vw;
-    
     font-family: silkscreen;
 }
 
-#secondPlayerAvatar {
+#usernameSecond:hover {
+    animation: bounce 0.1s forwards;
+}
+
+#usernameSecond::after {
+    content: "";
+    background-image: url("/images/avatarOwl.png");
+    background-size: 3.8vw 3.8vw;
+    display: inline-block;
+    width: 3.8vw;
+    height: 3.8vw;
+    margin-top: 0.5vw;
+    margin-left: 0.5vw;
+}
+
+/* #secondPlayerAvatar {
     width: 3.8vw;
     margin-top: 0.5vw;
     height: auto;
+} */
+
+#screenMessage {
+    width: 99%;
+    overflow: hidden;
+    margin-top: 30vh;
+    text-align: center;
+    position: absolute;
 }
 
 
+@keyframes dot {
+    0% {
+        transform: translateY(0%);
+    } 
+    100% {
+        transform: translateY(-1vh);
+    }
+}
+
+#firstDot {
+    animation: dot 1s linear infinite alternate;
+    display: inline-block;
+}
+
+#secondDot {
+    animation: dot 1s linear infinite alternate;
+    animation-delay: 0.3s;
+    display: inline-block;
+}
+
+#thirdDot {
+    animation: dot 1s linear infinite alternate;
+    animation-delay: 0.6s;
+    display: inline-block;
+}
+
+/* Winning screen styling */
+
+#winningPicture {
+    width: 25%;
+}
+
+/* Losing screen styling */
+
+#losingPicture {
+    width: 20%;
+}
+
+/* Common styling for winnig and losing screen */
+
+
+.resultScreen {
+    display: grid;
+    grid-template-rows: 60% 40%;
+    width: 100%;
+    aspect-ratio: 2/0.91;
+}
+
+.resultSection {
+    display: grid;
+    grid-template-rows: 60% 40%;
+    width: 100%;
+}
+
+.resultImage {
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start;
+}
+
+.textBox {
+    margin-top: 1vh;
+    text-align: center;
+}
+
+.buttonsSection {
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center;
+    flex-direction: column;
+}
+
+.rematchButton {
+    width: 11%;
+}
+
+.homeButton {
+    width: 11%;
+}
+
+.resultsText {
+    font-size: 2.5vw;
+}
+
+.getHome {
+    margin: 5px;
+    width: 100%;
+    aspect-ratio: 2/0.7;
+}
+
+.rematch {
+    margin: 5px;
+    width: 100%;
+    aspect-ratio: 2/0.7;
+}
+
+form button:active {
+    background-image: url('/images/splash/buttonSelected.png');
+}

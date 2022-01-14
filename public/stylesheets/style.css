@@ -36,10 +36,44 @@
   }
 }
 
+@keyframes buttonSelect {
+  100% {
+      transform: scale(1.05);
+  }
+}
+
+@keyframes bounce {
+  100% {
+      -webkit-transform: scale(1.05);
+  }
+}
+
 body {
   font-family: silkscreen;
   background-color: #bbdefb;
   animation: bodyBackground 4s linear infinite;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+#screenMessage {
+  margin-top: 30vh;
+}
+
+h1 {
+  font-size: 3.5vw;
+}
+
+p {
+  font-size: 1.5vw;
 }
 
 a:visited {
@@ -56,3 +90,49 @@ a:hover {
   display: inline-block;
 }
 
+form button {
+  font-family: silkscreen;
+  font-size: 2vw;
+  border: none;
+  width: 100%;
+  color: #3f51b5;
+  height: 100%;
+  background-image: url('/images/splash/button.png');
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+form button:hover {
+  cursor: pointer;
+  background-image: url('/images/splash/buttonSelected.png');
+  animation: buttonSelect 0.1s forwards;
+}
+
+.alertContainer {
+  width: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.alertSection {
+  cursor: pointer;
+  display: none;
+  width: 100vw;
+  background-color: transparent;
+  position: absolute;
+  margin-top: 30vh;
+}
+
+.alertBox {
+  width: 50%;
+  padding: 30px;
+  text-align: center;
+  background-color: #f44336;
+  color: #ffffff;
+}
+
+.alertMessage {
+  font-size: 2vw;
+}

@@ -1,3 +1,15 @@
+const mediaQuery = window.matchMedia('(min-width: 568px)');
+
+mediaQuery.onchange = (e) => checkDeviceResolution(e);
+
+function checkDeviceResolution(e) {
+    if(!e.matches) {
+        alert("Unfortunately, your device resolution is not optimal...");
+    }
+}
+
+checkDeviceResolution(mediaQuery);
+
 function makeDrop(image) {
     const drop = document.createElement("div");
     drop.className = "drop";
@@ -29,4 +41,37 @@ function animate() {
     }, rand);
 }
 
+function updateStats() {
+    setTimeout(() => {
+        axios.get("/stats")
+            .then(res => {
+                const stats = res.data;
+                document.getElementById("totalGames").innerText = Math.ceil(stats.totalGames);
+
+                let minutes = Math.round(stats.averagePlaytime / 60);
+                minutes = minutes.toString().length == 1 ? "0" + minutes.toString() : minutes.toString();
+                let seconds = stats.averagePlaytime % 60;
+                seconds = seconds.toString().length == 1 ? "0" + seconds.toString() : seconds.toString();
+                document.getElementById("averagePlaytime").innerText = minutes + ":" + seconds;
+
+                document.getElementById("activeRooms").innerText = Math.floor(stats.activeRooms);
+                updateStats();
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, 1000)
+}
+
+function saveUsername() {
+    const username = document.getElementById("usernameInput").value;
+    sessionStorage.setItem("playerUsername", username);
+}
+
+document.getElementById("usernameInput").value = sessionStorage.getItem("playerUsername") == null 
+    ? "" 
+    : sessionStorage.getItem("playerUsername");
+document.getElementById("playButton").addEventListener("click", saveUsername);
+document.getElementById("rulesButton").addEventListener("click", saveUsername);
+updateStats();
 animate();
