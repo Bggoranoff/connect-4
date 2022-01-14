@@ -49,5 +49,9 @@ socket.onmessage = function(event) {
             alert("Invalid move! Please choose another column!")
         }
         break;
+        case messages.TIMEOUT.type: {
+            enableClicks();
+        };
+        break;
     }
 }
