@@ -2,7 +2,26 @@
     element.addEventListener("click", () => clickColumn(element));
 });
 
+[...document.getElementsByClassName("rematch")].forEach(btn => {
+    btn.addEventListener("click", requestRematch);
+});
+
 let activeTimer = false;
+
+function clearBoard() {
+    [...document.getElementsByClassName("column")].forEach((element) => {
+        [...element.children].forEach(child => {
+            child.style.backgroundImage = "none";
+        });
+    });
+    document.getElementById("losingBlock").style.display = "none";
+    document.getElementById("gameBlock").style.display = "block";
+    document.getElementById("winningBlock").style.display = "none";
+}
+
+function requestRematch() {
+    player.rematch();
+}
 
 function startTimer() {
     activeTimer = true;
@@ -27,7 +46,7 @@ function updateTimer() {
 
 function resetTimer() {
     activeTimer = false;
-    document.getElementById("secondsRemaining").innerText = "3";
+    document.getElementById("secondsRemaining").innerText = "5";
 }
 
 function showNotification(msg) {
@@ -36,17 +55,35 @@ function showNotification(msg) {
     alert.style.display = "block";
 }
 
+function visualiseWinningScreen() {
+    resetTimer();
+    document.getElementById("losingBlock").style.display = "none";
+    document.getElementById("gameBlock").style.display = "none";
+    document.getElementById("winningBlock").style.display = "block";
+}
+
+function visualiseLosingScreen() {
+    resetTimer();
+    document.getElementById("winningBlock").style.display = "none";
+    document.getElementById("gameBlock").style.display = "none";
+    document.getElementById("losingBlock").style.display = "block";
+}
+
 function enableClicks() {
     [...document.getElementsByClassName("column")].forEach((element) => {
         element.style.pointerEvents = "auto";
         element.style.cursor = "pointer";
     });
+    document.getElementById("usernameFirst").style.textShadow = shadowStyle;
+    document.getElementById("usernameSecond").style.textShadow = "none";
 }
 
 function disableClicks() {
     [...document.getElementsByClassName("column")].forEach((element) => {
         element.style.pointerEvents = "none";
     });
+    document.getElementById("usernameFirst").style.textShadow = "none";
+    document.getElementById("usernameSecond").style.textShadow = shadowStyle;
 }
 
 function clickColumn(element) {

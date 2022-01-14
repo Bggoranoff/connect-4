@@ -1,12 +1,14 @@
 const socket = new WebSocket(config.WEB_SOCKET_URL);
 
+const shadowStyle = "#3498db 1px 1px 7px,".repeat(6).slice(0, -1);
+
 let player = new Player(socket);
 let username = sessionStorage.getItem("playerUsername") == null ? "guest" : sessionStorage.getItem("playerUsername");
 player.setUsername(username);
 
 document.getElementById("winningBlock").style.display = "none";
 document.getElementById("losingBlock").style.display = "none";
-document.getElementById("gameScreen").style.visibility = "hidden";
+document.getElementById("gameBlock").style.display = "none";
 document.getElementById("screenMessage").style.visibility = "visible";
 
 socket.onmessage = function(event) {
@@ -20,11 +22,12 @@ socket.onmessage = function(event) {
         };
         break;
         case messages.BEGIN_GAME.type: {
-            document.getElementById("gameScreen").style.visibility = "visible";
+            document.getElementById("gameBlock").style.display = "block";
             document.getElementById("screenMessage").remove();
 
             document.getElementById("usernameFirst").innerText = player.username;
             document.getElementById("usernameSecond").innerText = msg.otherUsername;
+            player.setSymbol(msg.symbol);
 
             if(msg.symbol == 1) {
                 startTimer();
@@ -62,6 +65,34 @@ socket.onmessage = function(event) {
         case messages.TIMEOUT.type: {
             startTimer();
             enableClicks();
+        };
+        break;
+        case messages.GAME_OVER.type: {
+            disableClicks();
+            if(msg.winner === player.username) {
+                setTimeout(visualiseWinningScreen, 4000);
+            } else {
+                setTimeout(visualiseLosingScreen, 4000);
+            }
+        }
+        break;
+        case messages.ABORT_GAME.type: {
+            document.getElementsByClassName("rematch")[0].disabled = "true";
+            document.getElementsByClassName("rematch")[0].style.animation = "none";
+            document.getElementsByClassName("rematch")[0].style.backgroundImage = 'url("/images/splash/buttonSelected.png")';
+        };
+        break;
+        case messages.WANT_REMATCH.type: {
+            clearBoard();
+            console.log(player.symbol);
+            console.log(msg.symbol);
+            if(player.symbol === msg.symbol) {
+                startTimer();
+                enableClicks();
+            } else {
+                resetTimer();
+                disableClicks();
+            }
         };
         break;
     }

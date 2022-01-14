@@ -25,16 +25,15 @@
             symbol: 0,
             otherUsername: null
         };
+        exports.GAME_OVER = {
+            type: "GAME-OVER",
+            winner: null
+        };
         exports.ABORT_GAME = {
             type: "ABORT-GAME"
         };
-        exports.GAME_OVER = {
-            type: "GAME-OVER"
-        };
-        exports.GAME_WON_BY = {
-            type: "GAME-WON-BY"
-        };
         exports.WANT_REMATCH = {
-            type: "WANT-REMATCH"
+            type: "WANT-REMATCH",
+            symbol: 0
         };
 })(typeof exports === "undefined" ? (this.messages = {}) : exports);

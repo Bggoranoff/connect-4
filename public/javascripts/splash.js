@@ -34,7 +34,7 @@ function updateStats() {
         axios.get("/stats")
             .then(res => {
                 const stats = res.data;
-                document.getElementById("totalGames").innerText = stats.totalGames;
+                document.getElementById("totalGames").innerText = Math.ceil(stats.totalGames);
 
                 let minutes = stats.averagePlaytime / 60;
                 minutes = minutes.toString().length == 1 ? "0" + minutes.toString() : minutes.toString();
@@ -42,7 +42,7 @@ function updateStats() {
                 seconds = seconds.toString().length == 1 ? "0" + seconds.toString() : seconds.toString();
                 document.getElementById("averagePlaytime").innerText = minutes + ":" + seconds;
 
-                document.getElementById("activeRooms").innerText = stats.activeRooms;
+                document.getElementById("activeRooms").innerText = Math.floor(stats.activeRooms);
                 updateStats();
             })
             .catch(err => {
