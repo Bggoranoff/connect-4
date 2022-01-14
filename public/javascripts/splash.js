@@ -51,5 +51,15 @@ function updateStats() {
     }, 1000)
 }
 
+function saveUsername() {
+    const username = document.getElementById("usernameInput").value;
+    sessionStorage.setItem("playerUsername", username);
+}
+
+document.getElementById("usernameInput").value = sessionStorage.getItem("playerUsername") == null 
+    ? "" 
+    : sessionStorage.getItem("playerUsername");
+document.getElementById("playButton").addEventListener("click", saveUsername);
+document.getElementById("rulesButton").addEventListener("click", saveUsername);
 updateStats();
 animate();
