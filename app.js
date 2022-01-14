@@ -122,7 +122,6 @@ wss.on("connection", ws => {
     });
 
     ws.on("close", code => {
-       
         if(websockets[ws.id].getPlayer(3 - playerSymbol) != null) {
             stats.activeRooms = stats.activeRooms - 0.5;
             stats.totalGames = stats.totalGames + 0.5;
