@@ -42,6 +42,12 @@
   }
 }
 
+@keyframes bounce {
+  100% {
+      -webkit-transform: scale(1.05);
+  }
+}
+
 body {
   font-family: silkscreen;
   background-color: #bbdefb;

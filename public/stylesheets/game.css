@@ -136,6 +136,10 @@
     font-family: silkscreen;
 }
 
+#usernameFirst:hover {
+    animation: bounce 0.1s forwards;
+}
+
 #timerSection {
     grid-column: 2 / span 1;
     font-family: silkscreen;
@@ -160,6 +164,10 @@
     margin-right: 5%;
     font-size: 1.7vw;
     font-family: silkscreen;
+}
+
+#usernameSecond:hover {
+    animation: bounce 0.1s forwards;
 }
 
 #usernameSecond::after {
