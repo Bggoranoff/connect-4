@@ -1,11 +1,21 @@
 (function(exports) {
         exports.MAKE_MOVE = {
             type: "MAKE-MOVE",
-            move: null
+            column: null
         };
         exports.PLAYER_DATA = {
             type: "PLAYER_DATA",
             username: null
+        };
+        exports.VALID_MOVE = {
+            type: "VALID-MOVE",
+            symbol: null,
+            row: null,
+            column: null,
+            turn: null
+        };
+        exports.INVALID_MOVE = {
+            type: "INVALID-MOVE"
         };
         exports.BEGIN_GAME = {
             type: "BEGIN-GAME",

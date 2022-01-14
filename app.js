@@ -26,7 +26,7 @@ const wss = new websocket.Server({ server });
 const websockets = {};
 
 let connectionId = 0;
-let currentGame = new GameState(stats.activeRooms++);
+let currentGame = new GameState(stats.activeRooms);
 
 wss.on("connection", ws => {
     ws.id = connectionId++;
@@ -63,9 +63,27 @@ wss.on("connection", ws => {
             };
             break;
             case messages.MAKE_MOVE.type: {
-                websockets[ws.id].mark(playerSymbol, msg.move[0], msg.move[1]);
-                let player = websockets[ws.id].getPlayer(3 - playerSymbol);
-                player.send(JSON.stringify(msg));
+                if(websockets[ws.id].getPlayerOnTurn() === playerSymbol) {
+                    if(websockets[ws.id].makeMove(msg.column, playerSymbol)) {
+                        let msg = messages.VALID_MOVE;
+                        msg.symbol = playerSymbol;
+                        msg.row = websockets[ws.id].lastMove[0];
+                        msg.column = websockets[ws.id].lastMove[1];
+                        msg.turn = "yours";
+                        ws.send(JSON.stringify(msg));
+
+                        msg.turn = "opponents";
+                        let player = websockets[ws.id].getPlayer(3 - playerSymbol);
+                        player.send(JSON.stringify(msg));
+
+                        websockets[ws.id].setPlayerOnTurn(3 - playerSymbol);
+                    } else {
+                        let msg = messages.INVALID_MOVE;
+                        ws.send(JSON.stringify(msg));
+                    }
+                }
+                
+                
             };
             break;
         }

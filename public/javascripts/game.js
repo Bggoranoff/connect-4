@@ -16,17 +16,12 @@ function disableClicks() {
 
 function clickColumn(element) {
     let columnIndex = parseInt(element.id.replace("column", ""));
-        if (player.makeMove(columnIndex)) {
-            visualiseMove(player.symbol);
-        } else {
-            alert("Invalid move!");
-        }
+    player.makeMove(columnIndex);
 }
 
-function visualiseMove(symbol) {
+function visualiseMove(symbol, row, column) {
     let image = symbol === 1 ? "url('/images/LastDrop.png')" : "url('/images/LastSnowflake.png')";
-    let move = player.lastMove;
-    let cellId = "cell" + move[0] + "" + move[1];
+    let cellId = "cell" + row + "" + column;
     let cell = document.getElementById(cellId);
 
     let drop = document.createElement("div");

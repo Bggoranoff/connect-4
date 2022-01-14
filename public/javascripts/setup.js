@@ -20,24 +20,34 @@ socket.onmessage = function(event) {
         case messages.BEGIN_GAME.type: {
             document.getElementById("gameScreen").style.visibility = "visible";
             document.getElementById("screenMessage").remove();
-            player.setSymbol(msg.symbol);
 
             document.getElementById("usernameFirst").innerText = player.username;
             document.getElementById("usernameSecond").innerText = msg.otherUsername;
 
-            if(player.symbol == 1) {
+            if(msg.symbol == 1) {
                 enableClicks();
             } else {
                 disableClicks();
             }
         };
         break;
-        case messages.MAKE_MOVE.type: {
-            player.mark(3 - player.symbol, msg.move[0], msg.move[1]);
-            player.setLastMove(msg.move[0], msg.move[1]);
-            visualiseMove(3 - player.symbol);
-            enableClicks();
+        case messages.VALID_MOVE.type: {
+            let symbol = msg.symbol;
+            let column = msg.column;
+            let row = msg.row;
+            visualiseMove(symbol, row, column);
+            switch(msg.turn) {
+                case "yours": disableClicks();
+                break;
+                case "opponents": enableClicks();
+                break;
+            }
+            
         };
+        break;
+        case messages.INVALID_MOVE.type: {
+            alert("Invalid move! Please choose another column!")
+        }
         break;
     }
 }

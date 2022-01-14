@@ -31,31 +31,9 @@ var Player = function (socket) {
     };
 
     var makeMove = function (column) {
-        let row = board.length - 1;
-        while (row >= 0 && board[row][column] != 0) {
-            row--;
-        }
-
-        if (row < 0) {
-            return false;
-        }
-
-        mark(symbol, row, column);
-        setLastMove(row, column);
-
         let msg = messages.MAKE_MOVE;
-        msg.move = lastMove;
+        msg.column = column;
         socket.send(JSON.stringify(msg));
-        disableClicks();
-        return true;
-    };
-
-    var mark = function (symbol, row, column) {
-        board[row][column] = symbol;
-    };
-
-    var setSymbol = function (newSymbol) {
-        this.symbol = newSymbol;
     };
 
     var setUsername = function(u) {
@@ -71,15 +49,6 @@ var Player = function (socket) {
         otherUsername,
         setUsername,
         username,
-        symbol,
-        board,
-        ended,
-        winner,
-        isWinner,
         makeMove,
-        mark,
-        lastMove,
-        setLastMove,
-        setSymbol
     }
 };

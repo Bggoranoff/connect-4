@@ -5,6 +5,8 @@ var GameState = function (id) {
 
     var secondPlayer = null;
 
+    var playerOnTurn = 1;
+
     var board = [
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
@@ -35,11 +37,12 @@ var GameState = function (id) {
         }
 
         if (row < 0) {
-            return;
+            return false;
         }
 
         mark(symbol, row, column);
         setLastMove(row, column);
+        return true;
     };
 
     var mark = function (symbol, row, column) {
@@ -125,6 +128,14 @@ var GameState = function (id) {
         return null;
     };
 
+    var getPlayerOnTurn = function () {
+        return playerOnTurn;
+    }
+
+    var setPlayerOnTurn = function (symbol) {
+        playerOnTurn = symbol;
+    }
+
     return {
         id,
         getPlayer,
@@ -133,7 +144,9 @@ var GameState = function (id) {
         lastMove,
         makeMove,
         setWinner,
-        mark
+        mark,
+        setPlayerOnTurn,
+        getPlayerOnTurn
     };
 };
 
