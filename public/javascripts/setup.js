@@ -27,8 +27,10 @@ socket.onmessage = function(event) {
             document.getElementById("usernameSecond").innerText = msg.otherUsername;
 
             if(msg.symbol == 1) {
+                startTimer();
                 enableClicks();
             } else {
+                resetTimer();
                 disableClicks();
             }
         };
@@ -39,19 +41,26 @@ socket.onmessage = function(event) {
             let row = msg.row;
             visualiseMove(symbol, row, column);
             switch(msg.turn) {
-                case "yours": disableClicks();
+                case "yours": {
+                    resetTimer();
+                    disableClicks();
+                }
                 break;
-                case "opponents": enableClicks();
+                case "opponents": {
+                    startTimer();
+                    enableClicks();
+                }
                 break;
             }
             
         };
         break;
         case messages.INVALID_MOVE.type: {
-            alert("Invalid move! Please choose another column!")
+            alert("Invalid move!");
         }
         break;
         case messages.TIMEOUT.type: {
+            startTimer();
             enableClicks();
         };
         break;

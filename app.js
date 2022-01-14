@@ -85,7 +85,8 @@ wss.on("connection", ws => {
             };
             break;
             case messages.TIMEOUT.type: {
-                let player = websokets[ws.id].getPlayer(3 - playerSymbol);
+                let player = websockets[ws.id].getPlayer(3 - playerSymbol);
+                websockets[ws.id].setPlayerOnTurn(3 - playerSymbol);
                 player.send(JSON.stringify(msg));
             }
             break;

@@ -14,20 +14,26 @@ function updateTimer() {
         if(activeTimer) {
             let timerValue = parseInt(document.getElementById("secondsRemaining").innerText);
             document.getElementById("secondsRemaining").innerText = --timerValue;
-            if(timerValue == 0) {
-                alert("Timeout!");
+            if(timerValue <= 0) {
+                showNotification("Your time is up!");
                 player.timeout();
                 resetTimer();
-                return;
+            } else {
+                updateTimer();
             }
-            updateTimer();
         }
     }, 1000);
 }
 
 function resetTimer() {
     activeTimer = false;
-    document.getElementById("secondsRemaining").innerText = "20";
+    document.getElementById("secondsRemaining").innerText = "3";
+}
+
+function showNotification(msg) {
+    let alert = document.getElementsByClassName("alertSection")[0];
+    document.getElementsByClassName("alertMessage")[0].innerText = msg;
+    alert.style.display = "block";
 }
 
 function enableClicks() {
@@ -44,6 +50,7 @@ function disableClicks() {
 }
 
 function clickColumn(element) {
+    resetTimer();
     let columnIndex = parseInt(element.id.replace("column", ""));
     player.makeMove(columnIndex);
 }
@@ -82,10 +89,3 @@ function visualiseMove(symbol, row, column) {
         cell.style.backgroundPosition = "center";
     }, 4000);
 }
-
-// [...document.getElementsByClassName("column")].forEach((element) => {
-//     element.addEventListener("mouseover", () => {
-//         // element.classList.add("dim");
-//         console.log("Hello");
-//     });
-// });
