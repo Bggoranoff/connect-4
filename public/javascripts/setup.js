@@ -69,7 +69,7 @@ socket.onmessage = function(event) {
         break;
         case messages.GAME_OVER.type: {
             disableClicks();
-            if(msg.winner === player.username) {
+            if(msg.winner === player.symbol) {
                 setTimeout(visualiseWinningScreen, 4000);
             } else {
                 setTimeout(visualiseLosingScreen, 4000);

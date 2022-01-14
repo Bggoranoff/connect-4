@@ -76,9 +76,8 @@ wss.on("connection", ws => {
 
                         if(websockets[ws.id].getEnded()) {
                             let winnerSymbol = websockets[ws.id].getWinner();
-                            let winnerUsername = websockets[ws.id].getPlayer(winnerSymbol).username;
                             let gameOver = messages.GAME_OVER;
-                            gameOver.winner = winnerUsername;
+                            gameOver.winner = winnerSymbol;
 
                             websockets[ws.id].getPlayer(winnerSymbol).send(JSON.stringify(gameOver));
                             websockets[ws.id].getPlayer(3 - winnerSymbol).send(JSON.stringify(gameOver));
