@@ -7,6 +7,8 @@ var GameState = function (id) {
 
     var playerOnTurn = 1;
 
+    var date = 0;
+
     var board = [
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
@@ -144,6 +146,10 @@ var GameState = function (id) {
         playerOnTurn = symbol;
     };
 
+    var setDate = function(currentDate) {
+        this.date = currentDate;
+    };
+
     var clear = function() {
         for(let i = 0; i < board.length; i++) {
             for(let j = 0; j < board[0].length; j++) {
@@ -153,6 +159,8 @@ var GameState = function (id) {
     };
 
     return {
+        date,
+        setDate,
         clear,
         endGame,
         winner,
