@@ -14,18 +14,18 @@ function updateTimer() {
         if(activeTimer) {
             let timerValue = parseInt(document.getElementById("secondsRemaining").innerText);
             document.getElementById("secondsRemaining").innerText = --timerValue;
-            if(timerValue == 0) {
-                alert("Timeout!");
+            if(timerValue <= 0) {
                 player.timeout();
                 resetTimer();
-                return;
+            } else {
+                updateTimer();
             }
-            updateTimer();
         }
     }, 1000);
 }
 
 function resetTimer() {
+    console.log("Timer reset");
     activeTimer = false;
     document.getElementById("secondsRemaining").innerText = "20";
 }
@@ -43,6 +43,7 @@ function disableClicks() {
 }
 
 function clickColumn(element) {
+    resetTimer();
     let columnIndex = parseInt(element.id.replace("column", ""));
     player.makeMove(columnIndex);
 }
@@ -81,10 +82,3 @@ function visualiseMove(symbol, row, column) {
         cell.style.backgroundPosition = "center";
     }, 4000);
 }
-
-// [...document.getElementsByClassName("column")].forEach((element) => {
-//     element.addEventListener("mouseover", () => {
-//         // element.classList.add("dim");
-//         console.log("Hello");
-//     });
-// });
