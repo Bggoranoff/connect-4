@@ -33,6 +33,7 @@
             type: "ABORT-GAME"
         };
         exports.WANT_REMATCH = {
-            type: "WANT-REMATCH"
+            type: "WANT-REMATCH",
+            symbol: 0
         };
 })(typeof exports === "undefined" ? (this.messages = {}) : exports);

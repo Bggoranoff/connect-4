@@ -57,7 +57,6 @@ var GameState = function (id) {
         board[row][column] = symbol;
         if (checkForWin()) {
             this.setWinner(symbol);
-            console.log(this.winner);
             this.endGame();
         }
     };
@@ -139,13 +138,22 @@ var GameState = function (id) {
 
     var getPlayerOnTurn = function () {
         return playerOnTurn;
-    }
+    };
 
     var setPlayerOnTurn = function (symbol) {
         playerOnTurn = symbol;
-    }
+    };
+
+    var clear = function() {
+        for(let i = 0; i < board.length; i++) {
+            for(let j = 0; j < board[0].length; j++) {
+                board[i][j] = 0;
+            }
+        }
+    };
 
     return {
+        clear,
         endGame,
         winner,
         board,

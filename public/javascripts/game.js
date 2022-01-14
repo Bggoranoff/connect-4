@@ -2,7 +2,26 @@
     element.addEventListener("click", () => clickColumn(element));
 });
 
+[...document.getElementsByClassName("rematch")].forEach(btn => {
+    btn.addEventListener("click", requestRematch);
+});
+
 let activeTimer = false;
+
+function clearBoard() {
+    [...document.getElementsByClassName("column")].forEach((element) => {
+        [...element.children].forEach(child => {
+            child.style.backgroundImage = "none";
+        });
+    });
+    document.getElementById("losingBlock").style.display = "none";
+    document.getElementById("gameBlock").style.display = "block";
+    document.getElementById("winningBlock").style.display = "none";
+}
+
+function requestRematch() {
+    player.rematch();
+}
 
 function startTimer() {
     activeTimer = true;
@@ -38,15 +57,15 @@ function showNotification(msg) {
 
 function visualiseWinningScreen() {
     resetTimer();
-    document.getElementById("losingBlock").remove();
-    document.getElementById("gameScreen").remove();
+    document.getElementById("losingBlock").style.display = "none";
+    document.getElementById("gameBlock").style.display = "none";
     document.getElementById("winningBlock").style.display = "block";
 }
 
 function visualiseLosingScreen() {
     resetTimer();
-    document.getElementById("winningBlock").remove();
-    document.getElementById("gameScreen").remove();
+    document.getElementById("winningBlock").style.display = "none";
+    document.getElementById("gameBlock").style.display = "none";
     document.getElementById("losingBlock").style.display = "block";
 }
 

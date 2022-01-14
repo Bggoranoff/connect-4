@@ -6,7 +6,7 @@ player.setUsername(username);
 
 document.getElementById("winningBlock").style.display = "none";
 document.getElementById("losingBlock").style.display = "none";
-document.getElementById("gameScreen").style.visibility = "hidden";
+document.getElementById("gameBlock").style.display = "none";
 document.getElementById("screenMessage").style.visibility = "visible";
 
 socket.onmessage = function(event) {
@@ -20,11 +20,12 @@ socket.onmessage = function(event) {
         };
         break;
         case messages.BEGIN_GAME.type: {
-            document.getElementById("gameScreen").style.visibility = "visible";
+            document.getElementById("gameBlock").style.display = "block";
             document.getElementById("screenMessage").remove();
 
             document.getElementById("usernameFirst").innerText = player.username;
             document.getElementById("usernameSecond").innerText = msg.otherUsername;
+            player.setSymbol(msg.symbol);
 
             if(msg.symbol == 1) {
                 startTimer();
@@ -77,6 +78,19 @@ socket.onmessage = function(event) {
             document.getElementsByClassName("rematch")[0].disabled = "true";
             document.getElementsByClassName("rematch")[0].style.animation = "none";
             document.getElementsByClassName("rematch")[0].style.backgroundImage = 'url("/images/splash/buttonSelected.png")';
+        };
+        break;
+        case messages.WANT_REMATCH.type: {
+            clearBoard();
+            console.log(player.symbol);
+            console.log(msg.symbol);
+            if(player.symbol === msg.symbol) {
+                startTimer();
+                enableClicks();
+            } else {
+                resetTimer();
+                disableClicks();
+            }
         };
         break;
     }

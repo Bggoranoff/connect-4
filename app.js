@@ -30,8 +30,6 @@ let currentGame = new GameState(stats.activeRooms);
 
 wss.on("connection", ws => {
     ws.id = connectionId++;
-    console.log("Connect");
-
     let playerSymbol = 0;
     let msg = messages.PLAYER_DATA;
     msg.username = null;
@@ -44,6 +42,7 @@ wss.on("connection", ws => {
             case messages.PLAYER_DATA.type: {
                 let username = msg.username;
                 ws.username = username;
+                ws.rematch = false;
                 playerSymbol = currentGame.addPlayer(ws);
 
                 websockets[ws.id] = currentGame;
@@ -96,7 +95,26 @@ wss.on("connection", ws => {
                 let player = websockets[ws.id].getPlayer(3 - playerSymbol);
                 websockets[ws.id].setPlayerOnTurn(3 - playerSymbol);
                 player.send(JSON.stringify(msg));
-            }
+            };
+            break;
+            case messages.WANT_REMATCH.type: {
+                websockets[ws.id].getPlayer(playerSymbol).rematch = true;
+                if(websockets[ws.id].getPlayer(3 - playerSymbol).rematch) {
+                    let rematchMsg = messages.WANT_REMATCH;
+                    rematchMsg.symbol = websockets[ws.id].getWinner();
+
+                    websockets[ws.id].getPlayer(playerSymbol).send(JSON.stringify(rematchMsg));
+                    websockets[ws.id].getPlayer(3 - playerSymbol).send(JSON.stringify(rematchMsg));
+
+                    websockets[ws.id].getPlayer(playerSymbol).rematch = false;
+                    websockets[ws.id].getPlayer(3 - playerSymbol).rematch = false;
+
+                    stats.totalGames += 1;
+                    websockets[ws.id].clear();
+                    websockets[ws.id].setPlayerOnTurn(rematchMsg.symbol);
+                    websockets[ws.id].ended = false;
+                }
+            };
             break;
         }
     });
