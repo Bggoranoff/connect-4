@@ -121,7 +121,11 @@ wss.on("connection", ws => {
     ws.on("close", code => {
         stats.activeRooms = stats.activeRooms - 0.5;
         stats.totalGames = stats.totalGames + 0.5;
-        websockets[ws.id].getPlayer(3 - playerSymbol).send(JSON.stringify(messages.ABORT_GAME));
+        if(websockets[ws.id].getPlayer(3 - playerSymbol) != null) {
+            websockets[ws.id].getPlayer(3 - playerSymbol).send(JSON.stringify(messages.ABORT_GAME));
+        } else {
+            currentGame = new GameState(stats.activeRooms++);
+        }
     });
 });
 
