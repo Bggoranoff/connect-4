@@ -7,6 +7,9 @@
             type: "PLAYER_DATA",
             username: null
         };
+        exports.TIMEOUT = {
+            type: "TIMEOUT"
+        };
         exports.VALID_MOVE = {
             type: "VALID-MOVE",
             symbol: null,
