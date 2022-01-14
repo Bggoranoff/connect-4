@@ -1,3 +1,15 @@
+const mediaQuery = window.matchMedia('(min-width: 568px)');
+
+mediaQuery.onchange = (e) => checkDeviceResolution(e);
+
+function checkDeviceResolution(e) {
+    if(!e.matches) {
+        alert("Unfortunately, your device resolution is not optimal...");
+    }
+}
+
+checkDeviceResolution(mediaQuery);
+
 function makeDrop(image) {
     const drop = document.createElement("div");
     drop.className = "drop";
