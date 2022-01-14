@@ -57,14 +57,12 @@ wss.on("connection", ws => {
                         msg.symbol = playerSymbol;
                         msg.row = websockets[ws.id].lastMove[0];
                         msg.column = websockets[ws.id].lastMove[1];
+                        msg.turn = "yours";
                         ws.send(JSON.stringify(msg));
 
-                        let opponentMsg = messages.OPPONENT_MOVE;
-                        opponentMsg.symbol = playerSymbol;
-                        opponentMsg.row = websockets[ws.id].lastMove[0];
-                        opponentMsg.column = websockets[ws.id].lastMove[1];
+                        msg.turn = "opponents";
                         let player = websockets[ws.id].getPlayer(3 - playerSymbol);
-                        player.send(JSON.stringify(opponentMsg));
+                        player.send(JSON.stringify(msg));
 
                         websockets[ws.id].setPlayerOnTurn(3 - playerSymbol);
                     } else {

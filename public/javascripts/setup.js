@@ -11,9 +11,8 @@ socket.onmessage = function(event) {
         case messages.BEGIN_GAME.type: {
             document.getElementById("gameScreen").style.visibility = "visible";
             document.getElementById("screenMessage").remove();
-            player.setSymbol(msg.symbol);
 
-            if(player.symbol == 1) {
+            if(msg.symbol == 1) {
                 enableClicks();
             } else {
                 disableClicks();
@@ -25,17 +24,18 @@ socket.onmessage = function(event) {
             let column = msg.column;
             let row = msg.row;
             visualiseMove(symbol, row, column);
-            disableClicks();
+            switch(msg.turn) {
+                case "yours": disableClicks();
+                break;
+                case "opponents": enableClicks();
+                break;
+            }
+            
         };
         break;
-        case messages.OPPONENT_MOVE.type: {
-            console.log(msg);
-            let symbol = msg.symbol;
-            let column = msg.column;
-            let row = msg.row;
-            visualiseMove(symbol, row, column);
-            enableClicks();
-        };
+        case messages.INVALID_MOVE.type: {
+            alert("Invalid move! Please choose another column!")
+        }
         break;
     }
 }

@@ -7,16 +7,11 @@
             type: "VALID-MOVE",
             symbol: null,
             row: null,
-            column: null
+            column: null,
+            turn: null
         }
         exports.INVALID_MOVE = {
             type: "INVALID-MOVE"
-        }
-        exports.OPPONENT_MOVE = {
-            type: "OPPONENT-MOVE",
-            symbol: null,
-            row: null,
-            column: null
         }
         exports.BEGIN_GAME = {
             type: "BEGIN-GAME",
