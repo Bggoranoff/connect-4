@@ -76,6 +76,17 @@ wss.on("connection", ws => {
                         let player = websockets[ws.id].getPlayer(3 - playerSymbol);
                         player.send(JSON.stringify(msg));
 
+                        console.log(websockets[ws.id].getEnded());
+
+                        if(websockets[ws.id].getEnded()) {
+                            let winnerSymbol = websockets[ws.id].getWinner();
+                            let winnerUsername = websockets[ws.id].getPlayer(winnerSymbol).username;
+                            let gameOver = messages.GAME_OVER;
+                            gameOver.winner = winnerUsername;
+
+                            websockets[ws.id].getPlayer(winnerSymbol).send(JSON.stringify(gameOver));
+                            websockets[ws.id].getPlayer(3 - winnerSymbol).send(JSON.stringify(gameOver));
+                        }
                         websockets[ws.id].setPlayerOnTurn(3 - playerSymbol);
                     } else {
                         let msg = messages.INVALID_MOVE;

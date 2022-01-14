@@ -23,11 +23,19 @@ var GameState = function (id) {
     var winner = 0;
 
     var setWinner = function (winnerSymbol) {
-        winner = winnerSymbol;
+        this.winner = winnerSymbol;
     };
 
     var endGame = function () {
-        ended = true;
+        this.ended = true;
+    };
+
+    var getWinner = function() {
+        return this.winner;
+    };
+
+    var getEnded = function() {
+        return this.ended;
     };
 
     var makeMove = function (column, symbol) {
@@ -40,7 +48,7 @@ var GameState = function (id) {
             return false;
         }
 
-        mark(symbol, row, column);
+        this.mark(symbol, row, column);
         setLastMove(row, column);
         return true;
     };
@@ -48,8 +56,9 @@ var GameState = function (id) {
     var mark = function (symbol, row, column) {
         board[row][column] = symbol;
         if (checkForWin()) {
-            setWinner(symbol);
-            endGame();
+            this.setWinner(symbol);
+            console.log(this.winner);
+            this.endGame();
         }
     };
 
@@ -137,6 +146,9 @@ var GameState = function (id) {
     }
 
     return {
+        endGame,
+        winner,
+        board,
         id,
         getPlayer,
         addPlayer,
@@ -144,6 +156,8 @@ var GameState = function (id) {
         lastMove,
         makeMove,
         setWinner,
+        getWinner,
+        getEnded,
         mark,
         setPlayerOnTurn,
         getPlayerOnTurn

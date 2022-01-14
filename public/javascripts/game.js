@@ -27,13 +27,27 @@ function updateTimer() {
 
 function resetTimer() {
     activeTimer = false;
-    document.getElementById("secondsRemaining").innerText = "3";
+    document.getElementById("secondsRemaining").innerText = "5";
 }
 
 function showNotification(msg) {
     let alert = document.getElementsByClassName("alertSection")[0];
     document.getElementsByClassName("alertMessage")[0].innerText = msg;
     alert.style.display = "block";
+}
+
+function visualiseWinningScreen() {
+    resetTimer();
+    document.getElementById("losingBlock").remove();
+    document.getElementById("gameScreen").remove();
+    document.getElementById("winningBlock").style.display = "block";
+}
+
+function visualiseLosingScreen() {
+    resetTimer();
+    document.getElementById("winningBlock").remove();
+    document.getElementById("gameScreen").remove();
+    document.getElementById("losingBlock").style.display = "block";
 }
 
 function enableClicks() {

@@ -64,5 +64,14 @@ socket.onmessage = function(event) {
             enableClicks();
         };
         break;
+        case messages.GAME_OVER.type: {
+            disableClicks();
+            if(msg.winner === player.username) {
+                setTimeout(visualiseWinningScreen, 4000);
+            } else {
+                setTimeout(visualiseLosingScreen, 4000);
+            }
+        }
+        break;
     }
 }

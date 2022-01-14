@@ -29,10 +29,8 @@
             type: "ABORT-GAME"
         };
         exports.GAME_OVER = {
-            type: "GAME-OVER"
-        };
-        exports.GAME_WON_BY = {
-            type: "GAME-WON-BY"
+            type: "GAME-OVER",
+            winner: null
         };
         exports.WANT_REMATCH = {
             type: "WANT-REMATCH"
