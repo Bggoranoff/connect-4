@@ -2,6 +2,7 @@ const socket = new WebSocket(config.WEB_SOCKET_URL);
 
 var player = new Player(socket);
 
+document.getElementById("winningScreen").style.display = "none";
 document.getElementById("gameScreen").style.visibility = "hidden";
 document.getElementById("screenMessage").style.visibility = "visible";
 

@@ -22,6 +22,10 @@ router.get('/waiting', function(req, res) {
   res.render("waiting.ejs", {});
 });
 
+router.get('/win', function(req, res) {
+  res.render("winning.ejs", {});
+});
+
 router.get('/stats', function(req, res) {
   res.send(JSON.stringify(stats));
 });
