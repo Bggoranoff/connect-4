@@ -48,7 +48,6 @@ wss.on("connection", ws => {
 
                 websockets[ws.id] = currentGame;
                 if(playerSymbol == 2) {
-                    console.log("Second connected");
                     let firstMessage = messages.BEGIN_GAME;
                     firstMessage.otherUsername = currentGame.getPlayer(3 - playerSymbol).username;
                     firstMessage.symbol = playerSymbol;
@@ -76,8 +75,6 @@ wss.on("connection", ws => {
                         let player = websockets[ws.id].getPlayer(3 - playerSymbol);
                         player.send(JSON.stringify(msg));
 
-                        console.log(websockets[ws.id].getEnded());
-
                         if(websockets[ws.id].getEnded()) {
                             let winnerSymbol = websockets[ws.id].getWinner();
                             let winnerUsername = websockets[ws.id].getPlayer(winnerSymbol).username;
@@ -102,6 +99,12 @@ wss.on("connection", ws => {
             }
             break;
         }
+    });
+
+    ws.on("close", code => {
+        stats.activeRooms = stats.activeRooms - 0.5;
+        stats.totalGames = stats.totalGames + 0.5;
+        websockets[ws.id].getPlayer(3 - playerSymbol).send(JSON.stringify(messages.ABORT_GAME));
     });
 });
 

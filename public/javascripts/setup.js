@@ -73,5 +73,11 @@ socket.onmessage = function(event) {
             }
         }
         break;
+        case messages.ABORT_GAME.type: {
+            document.getElementsByClassName("rematch")[0].disabled = "true";
+            document.getElementsByClassName("rematch")[0].style.animation = "none";
+            document.getElementsByClassName("rematch")[0].style.backgroundImage = 'url("/images/splash/buttonSelected.png")';
+        };
+        break;
     }
 }

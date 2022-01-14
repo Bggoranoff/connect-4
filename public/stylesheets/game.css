@@ -238,18 +238,18 @@
     text-align: center;
 }
 
-#buttonsSection {
+.buttonsSection {
     display: flex; 
     justify-content: flex-start; 
     align-items: center;
     flex-direction: column;
 }
 
-#rematchButton {
+.rematchButton {
     width: 11%;
 }
 
-#homeButton {
+.homeButton {
     width: 11%;
 }
 
@@ -257,7 +257,13 @@
     font-size: 2.5vw;
 }
 
-#getHome {
+.getHome {
+    margin: 5px;
+    width: 100%;
+    aspect-ratio: 2/0.7;
+}
+
+.rematch {
     margin: 5px;
     width: 100%;
     aspect-ratio: 2/0.7;

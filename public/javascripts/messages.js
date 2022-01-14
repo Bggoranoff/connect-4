@@ -25,12 +25,12 @@
             symbol: 0,
             otherUsername: null
         };
-        exports.ABORT_GAME = {
-            type: "ABORT-GAME"
-        };
         exports.GAME_OVER = {
             type: "GAME-OVER",
             winner: null
+        };
+        exports.ABORT_GAME = {
+            type: "ABORT-GAME"
         };
         exports.WANT_REMATCH = {
             type: "WANT-REMATCH"
