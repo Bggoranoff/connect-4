@@ -4,11 +4,11 @@ var stats = require("../stats");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  let minutes = stats.averagePlaytime / 60;
+  let minutes = Math.round(stats.averagePlaytime / 60);
   minutes = minutes.toString().length == 1 ? "0" + minutes.toString() : minutes.toString();
   let seconds = stats.averagePlaytime % 60;
   seconds = seconds.toString().length == 1 ? "0" + seconds.toString() : seconds.toString();
-  res.render("splash.ejs", { totalGames: stats.totalGames, activeRooms: stats.activeRooms, minutes, seconds });
+  res.render("splash.ejs", { totalGames: Math.ceil(stats.totalGames), activeRooms: Math.floor(stats.activeRooms), minutes, seconds });
 });
 
 

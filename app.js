@@ -56,6 +56,7 @@ wss.on("connection", ws => {
                     secondMessage.otherUsername = currentGame.getPlayer(playerSymbol).username;
                     secondMessage.symbol = 3 - playerSymbol;
                     currentGame.getPlayer(3 - playerSymbol).send(JSON.stringify(secondMessage));
+                    currentGame.setDate(Date.now());
                     currentGame = new GameState(stats.activeRooms++);
                 }
             };
@@ -109,6 +110,8 @@ wss.on("connection", ws => {
                     websockets[ws.id].getPlayer(3 - playerSymbol).rematch = false;
 
                     stats.totalGames += 1;
+                    stats.totalPlaytime += Math.round((new Date().getTime() - websockets[ws.id].date) / 1000);
+                    stats.averagePlaytime = Math.round(stats.totalPlaytime / stats.totalGames);
                     websockets[ws.id].clear();
                     websockets[ws.id].setPlayerOnTurn(rematchMsg.symbol);
                     websockets[ws.id].ended = false;
@@ -119,13 +122,19 @@ wss.on("connection", ws => {
     });
 
     ws.on("close", code => {
-        stats.activeRooms = stats.activeRooms - 0.5;
-        stats.totalGames = stats.totalGames + 0.5;
+       
         if(websockets[ws.id].getPlayer(3 - playerSymbol) != null) {
+            stats.activeRooms = stats.activeRooms - 0.5;
+            stats.totalGames = stats.totalGames + 0.5;
+            if(stats.totalGames < Math.ceil(stats.totalGames)) {
+                stats.totalPlaytime += Math.round((Date.now() - websockets[ws.id].date) / 1000);
+                stats.averagePlaytime = Math.round(stats.totalPlaytime / Math.ceil(stats.totalGames));
+            }
             websockets[ws.id].getPlayer(3 - playerSymbol).send(JSON.stringify(messages.ABORT_GAME));
         } else {
             currentGame = new GameState(stats.activeRooms++);
         }
+        
     });
 });
 
