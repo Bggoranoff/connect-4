@@ -82,9 +82,12 @@ wss.on("connection", ws => {
                         ws.send(JSON.stringify(msg));
                     }
                 }
-                
-                
             };
+            break;
+            case messages.TIMEOUT.type: {
+                let player = websokets[ws.id].getPlayer(3 - playerSymbol);
+                player.send(JSON.stringify(msg));
+            }
             break;
         }
     });

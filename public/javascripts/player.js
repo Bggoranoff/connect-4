@@ -44,6 +44,11 @@ var Player = function (socket) {
         this.otherUsername = u;
     };
 
+    var timeout = function() {
+        let msg = messages.TIMEOUT;
+        socket.send(JSON.stringify(msg));
+    }
+
     return {
         setOtherUsername, 
         otherUsername,
