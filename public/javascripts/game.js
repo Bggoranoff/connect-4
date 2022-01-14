@@ -15,6 +15,7 @@ function updateTimer() {
             let timerValue = parseInt(document.getElementById("secondsRemaining").innerText);
             document.getElementById("secondsRemaining").innerText = --timerValue;
             if(timerValue <= 0) {
+                showNotification("Your time is up!");
                 player.timeout();
                 resetTimer();
             } else {
@@ -25,9 +26,14 @@ function updateTimer() {
 }
 
 function resetTimer() {
-    console.log("Timer reset");
     activeTimer = false;
-    document.getElementById("secondsRemaining").innerText = "20";
+    document.getElementById("secondsRemaining").innerText = "3";
+}
+
+function showNotification(msg) {
+    let alert = document.getElementsByClassName("alertSection")[0];
+    document.getElementsByClassName("alertMessage")[0].innerText = msg;
+    alert.style.display = "block";
 }
 
 function enableClicks() {

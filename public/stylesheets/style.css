@@ -42,6 +42,16 @@ body {
   animation: bodyBackground 4s linear infinite;
 }
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
 #screenMessage {
   margin-top: 30vh;
 }
@@ -68,3 +78,30 @@ a:hover {
   display: inline-block;
 }
 
+.alertContainer {
+  width: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.alertSection {
+  cursor: pointer;
+  display: none;
+  width: 100vw;
+  background-color: transparent;
+  position: absolute;
+  margin-top: 30vh;
+}
+
+.alertBox {
+  width: 50%;
+  padding: 30px;
+  text-align: center;
+  background-color: #f44336;
+  color: #ffffff;
+}
+
+.alertMessage {
+  font-size: 2vw;
+}
