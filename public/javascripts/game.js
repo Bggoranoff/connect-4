@@ -1,3 +1,15 @@
+const mediaQuery = window.matchMedia('(min-width: 768px)');
+
+mediaQuery.onchange = (e) => checkDeviceResolution(e);
+
+function checkDeviceResolution(e) {
+    if(!e.matches) {
+        alert("Unfortunately, your device resolution is not supported...");
+    }
+}
+
+checkDeviceResolution(mediaQuery);
+
 [...document.getElementsByClassName("column")].forEach((element) => {
     element.addEventListener("click", () => clickColumn(element));
 });
