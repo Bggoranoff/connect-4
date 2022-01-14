@@ -4,7 +4,7 @@ mediaQuery.onchange = (e) => checkDeviceResolution(e);
 
 function checkDeviceResolution(e) {
     if(!e.matches) {
-        alert("Unfortunately, your device resolution is not supported...");
+        alert("Unfortunately, your device resolution is not optimal...");
     }
 }
 
