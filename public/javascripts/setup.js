@@ -83,6 +83,7 @@ socket.onmessage = function(event) {
             document.getElementsByClassName("rematch")[0].style.animation = "none";
             document.getElementsByClassName("rematch")[0].style.backgroundImage = 'url("/images/splash/buttonSelected.png")';
             showNotification("Your opponent left!");
+            resetTimer();
             [...document.getElementsByClassName("noselect alertSection")].forEach(popUp => {
                 popUp.addEventListener("click", () => {
                     location.replace("/");
