@@ -106,17 +106,25 @@
 
 #firstUserSection {
     grid-column: 1 / span 1;
-    
     display: grid;
-    grid-template-columns: 25% 75%;
-    
-
+    grid-template-columns: 100%;
 }
 
-#firstPlayerAvatar {
+/* #firstPlayerAvatar {
     width: 3.8vw;
     margin-top: 0.5vw;
     height: auto;
+} */
+
+#usernameFirst::before {
+    content: "";
+    background-image: url("/images/avatarOwl.png");
+    background-size: 3.8vw 3.8vw;
+    display: inline-block;
+    width: 3.8vw;
+    height: 3.8vw;
+    margin-top: 0.5vw;
+    margin-right: 0.5vw;
 }
 
 #usernameFirst {
@@ -125,7 +133,6 @@
     align-items: center;
     font-size: 1.7vw;
     margin-left: 5%;
-    
     font-family: silkscreen;
 }
 
@@ -143,9 +150,7 @@
 #secondUserSection {
     grid-column: 3 / span 1;
     display: grid;
-    grid-template-columns: 75% 25%;
-        
-
+    grid-template-columns: 100%;
 }
 
 #usernameSecond {
@@ -154,15 +159,25 @@
     align-items: center;
     margin-right: 5%;
     font-size: 1.7vw;
-    
     font-family: silkscreen;
 }
 
-#secondPlayerAvatar {
+#usernameSecond::after {
+    content: "";
+    background-image: url("/images/avatarOwl.png");
+    background-size: 3.8vw 3.8vw;
+    display: inline-block;
+    width: 3.8vw;
+    height: 3.8vw;
+    margin-top: 0.5vw;
+    margin-left: 0.5vw;
+}
+
+/* #secondPlayerAvatar {
     width: 3.8vw;
     margin-top: 0.5vw;
     height: auto;
-}
+} */
 
 #screenMessage {
     width: 99%;
