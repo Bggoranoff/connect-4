@@ -119,7 +119,7 @@ form button:hover {
 .alertSection {
   cursor: pointer;
   display: none;
-  width: 100vw;
+  width: 99vw;
   background-color: transparent;
   position: absolute;
   margin-top: 30vh;
