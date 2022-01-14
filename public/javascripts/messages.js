@@ -3,9 +3,14 @@
             type: "MAKE-MOVE",
             move: null
         };
+        exports.PLAYER_DATA = {
+            type: "PLAYER_DATA",
+            username: null
+        };
         exports.BEGIN_GAME = {
             type: "BEGIN-GAME",
-            symbol: 0
+            symbol: 0,
+            otherUsername: null
         };
         exports.ABORT_GAME = {
             type: "ABORT-GAME"

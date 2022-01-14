@@ -1,6 +1,8 @@
 var Player = function (socket) {
 
     var username;
+
+    var otherUsername;
     
     var symbol = 0;
 
@@ -56,7 +58,18 @@ var Player = function (socket) {
         this.symbol = newSymbol;
     };
 
+    var setUsername = function(u) {
+        this.username = u;
+    };
+
+    var setOtherUsername = function(u) {
+        this.otherUsername = u;
+    };
+
     return {
+        setOtherUsername, 
+        otherUsername,
+        setUsername,
         username,
         symbol,
         board,
