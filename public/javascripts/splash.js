@@ -36,7 +36,7 @@ function updateStats() {
                 const stats = res.data;
                 document.getElementById("totalGames").innerText = Math.ceil(stats.totalGames);
 
-                let minutes = stats.averagePlaytime / 60;
+                let minutes = Math.round(stats.averagePlaytime / 60);
                 minutes = minutes.toString().length == 1 ? "0" + minutes.toString() : minutes.toString();
                 let seconds = stats.averagePlaytime % 60;
                 seconds = seconds.toString().length == 1 ? "0" + seconds.toString() : seconds.toString();
