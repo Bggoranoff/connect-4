@@ -1,4 +1,4 @@
-const mediaQuery = window.matchMedia('(min-width: 768px)');
+const mediaQuery = window.matchMedia('(min-width: 568px)');
 
 mediaQuery.onchange = (e) => checkDeviceResolution(e);
 
