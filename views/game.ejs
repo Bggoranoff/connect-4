@@ -10,6 +10,59 @@
 </head>
 
 <body>
+    <div id="winningBlock">
+        <div class="resultScreen">
+            <div class="resultSection">
+                <div class="resultImage">
+                    <img id="winningPicture" src="/images/Winning.png">
+                </div>
+                <div class="textBox">
+                    <h1 class="resultText">
+                        Congratulations!<br>You won!
+                    </h1>
+                </div>
+            </div>
+            <div id="buttonsSection">
+                <div id="rematchButton">
+                    <form action="/" method="get">
+                        <button id="getHome">Rematch</button>
+                    </form>
+                </div>
+                <div id="homeButton">
+                    <form action="/" method="get">
+                        <button id="getHome">Home</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="losingBlock">
+        <div class="resultScreen">
+            <div class="resultSection">
+                <div class="resultImage">
+                    <img id="losingPicture" src="/images/Losing.png">
+                </div>
+                <div class="textBox">
+                    <h1 id="bullying">
+                        ...Oh, that's tough!<br>You lost!
+                    </h1>
+                </div>
+            </div>
+            <div id="buttonsSection">
+                <div id="rematchButton">
+                    <form action="/" method="get">
+                        <button id="getHome">Rematch</button>
+                    </form>
+                </div>
+                <div id="homeButton">
+                    <form action="/" method="get">
+                        <button id="getHome">Home</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div id="screenMessage">
         <h1>Waiting for another player to join<span id="firstDot">.</span><span id="secondDot">.</span><span id="thirdDot">.</span></h1>

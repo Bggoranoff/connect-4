@@ -36,6 +36,12 @@
   }
 }
 
+@keyframes buttonSelect {
+  100% {
+      transform: scale(1.05);
+  }
+}
+
 body {
   font-family: silkscreen;
   background-color: #bbdefb;
@@ -68,3 +74,21 @@ a:hover {
   display: inline-block;
 }
 
+form button {
+  font-family: silkscreen;
+  font-size: 2vw;
+  border: none;
+  width: 100%;
+  color: #3f51b5;
+  height: 100%;
+  background-image: url('/images/splash/button.png');
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+form button:hover {
+  cursor: pointer;
+  background-image: url('/images/splash/buttonSelected.png');
+  animation: buttonSelect 0.1s forwards;
+}

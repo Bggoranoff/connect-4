@@ -199,10 +199,66 @@
     display: inline-block;
 }
 
-#winningScreen {
-    width: 99%;
-    overflow: hidden;
-    margin-top: 30vh;
+/* Winning screen styling */
+
+#winningPicture {
+    width: 25%;
+}
+
+/* Losing screen styling */
+
+#losingPicture {
+    width: 20%;
+}
+
+/* Common styling for winnig and losing screen */
+
+
+.resultScreen {
+    display: grid;
+    grid-template-rows: 60% 40%;
+    width: 100%;
+    aspect-ratio: 2/0.91;
+}
+
+.resultSection {
+    display: grid;
+    grid-template-rows: 60% 40%;
+    width: 100%;
+}
+
+.resultImage {
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start;
+}
+
+.textBox {
+    margin-top: 1vh;
     text-align: center;
-    position: absolute;
+}
+
+#buttonsSection {
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center;
+    flex-direction: column;
+}
+
+#rematchButton {
+    width: 11%;
+}
+
+#homeButton {
+    width: 11%;
+}
+
+.resultsText {
+    font-size: 2.5vw;
+}
+
+#getHome {
+    margin: 5px;
+    width: 100%;
+    aspect-ratio: 2/0.7;
 }
