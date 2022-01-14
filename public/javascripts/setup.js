@@ -4,6 +4,8 @@ let player = new Player(socket);
 let username = sessionStorage.getItem("playerUsername") == null ? "guest" : sessionStorage.getItem("playerUsername");
 player.setUsername(username);
 
+document.getElementById("winningBlock").style.display = "none";
+document.getElementById("losingBlock").style.display = "none";
 document.getElementById("gameScreen").style.visibility = "hidden";
 document.getElementById("screenMessage").style.visibility = "visible";
 

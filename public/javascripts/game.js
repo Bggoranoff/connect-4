@@ -39,6 +39,7 @@ function showNotification(msg) {
 function enableClicks() {
     [...document.getElementsByClassName("column")].forEach((element) => {
         element.style.pointerEvents = "auto";
+        element.style.cursor = "pointer";
     });
 }
 
