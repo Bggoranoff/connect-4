@@ -20,10 +20,20 @@ socket.onmessage = function(event) {
             }
         };
         break;
-        case messages.MAKE_MOVE.type: {
-            player.mark(3 - player.symbol, msg.move[0], msg.move[1]);
-            player.setLastMove(msg.move[0], msg.move[1]);
-            visualiseMove(3 - player.symbol);
+        case messages.VALID_MOVE.type: {
+            let symbol = msg.symbol;
+            let column = msg.column;
+            let row = msg.row;
+            visualiseMove(symbol, row, column);
+            disableClicks();
+        };
+        break;
+        case messages.OPPONENT_MOVE.type: {
+            console.log(msg);
+            let symbol = msg.symbol;
+            let column = msg.column;
+            let row = msg.row;
+            visualiseMove(symbol, row, column);
             enableClicks();
         };
         break;

@@ -26,7 +26,7 @@ const wss = new websocket.Server({ server });
 const websockets = {};
 
 let connectionId = 0;
-let currentGame = new GameState(stats.activeRooms++);
+let currentGame = new GameState(stats.activeRooms);
 
 wss.on("connection", ws => {
     ws.id = connectionId++;
@@ -43,7 +43,7 @@ wss.on("connection", ws => {
         let secondMessage = messages.BEGIN_GAME;
         secondMessage.symbol = 3 - playerSymbol;
         currentGame.getPlayer(3 - playerSymbol).send(JSON.stringify(secondMessage));
-        currentGame = new GameState(stats.activeRooms++);
+        currentGame = new GameState(++stats.activeRooms);
     }
 
     ws.on("message", bin => {
@@ -51,9 +51,29 @@ wss.on("connection", ws => {
 
         switch(msg.type) {
             case messages.MAKE_MOVE.type: {
-                websockets[ws.id].mark(playerSymbol, msg.move[0], msg.move[1]);
-                let player = websockets[ws.id].getPlayer(3 - playerSymbol);
-                player.send(JSON.stringify(msg));
+                if(websockets[ws.id].getPlayerOnTurn() === playerSymbol) {
+                    if(websockets[ws.id].makeMove(msg.column, playerSymbol)) {
+                        let msg = messages.VALID_MOVE;
+                        msg.symbol = playerSymbol;
+                        msg.row = websockets[ws.id].lastMove[0];
+                        msg.column = websockets[ws.id].lastMove[1];
+                        ws.send(JSON.stringify(msg));
+
+                        let opponentMsg = messages.OPPONENT_MOVE;
+                        opponentMsg.symbol = playerSymbol;
+                        opponentMsg.row = websockets[ws.id].lastMove[0];
+                        opponentMsg.column = websockets[ws.id].lastMove[1];
+                        let player = websockets[ws.id].getPlayer(3 - playerSymbol);
+                        player.send(JSON.stringify(opponentMsg));
+
+                        websockets[ws.id].setPlayerOnTurn(3 - playerSymbol);
+                    } else {
+                        let msg = messages.INVALID_MOVE;
+                        ws.send(JSON.stringify(msg));
+                    }
+                }
+                
+                
             };
             break;
         }
