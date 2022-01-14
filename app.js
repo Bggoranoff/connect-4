@@ -122,13 +122,19 @@ wss.on("connection", ws => {
     });
 
     ws.on("close", code => {
-        stats.activeRooms = stats.activeRooms - 0.5;
-        stats.totalGames = stats.totalGames + 0.5;
-        if(stats.totalGames < Math.ceil(stats.totalGames)) {
-            stats.totalPlaytime += Math.round((Date.now() - websockets[ws.id].date) / 1000);
-            stats.averagePlaytime = Math.round(stats.totalPlaytime / Math.ceil(stats.totalGames));
+       
+        if(websockets[ws.id].getPlayer(3 - playerSymbol) != null) {
+            stats.activeRooms = stats.activeRooms - 0.5;
+            stats.totalGames = stats.totalGames + 0.5;
+            if(stats.totalGames < Math.ceil(stats.totalGames)) {
+                stats.totalPlaytime += Math.round((Date.now() - websockets[ws.id].date) / 1000);
+                stats.averagePlaytime = Math.round(stats.totalPlaytime / Math.ceil(stats.totalGames));
+            }
+            websockets[ws.id].getPlayer(3 - playerSymbol).send(JSON.stringify(messages.ABORT_GAME));
+        } else {
+            currentGame = new GameState(stats.activeRooms++);
         }
-        websockets[ws.id].getPlayer(3 - playerSymbol).send(JSON.stringify(messages.ABORT_GAME));
+        
     });
 });
 

@@ -80,6 +80,12 @@ socket.onmessage = function(event) {
             document.getElementsByClassName("rematch")[0].disabled = "true";
             document.getElementsByClassName("rematch")[0].style.animation = "none";
             document.getElementsByClassName("rematch")[0].style.backgroundImage = 'url("/images/splash/buttonSelected.png")';
+            showNotification("Your opponent left!");
+            [...document.getElementsByClassName("noselect alertSection")].forEach(popUp => {
+                popUp.addEventListener("click", () => {
+                    location.replace("/");
+                });
+            });
         };
         break;
         case messages.WANT_REMATCH.type: {
