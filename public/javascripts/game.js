@@ -2,6 +2,34 @@
     element.addEventListener("click", () => clickColumn(element));
 });
 
+let activeTimer = false;
+
+function startTimer() {
+    activeTimer = true;
+    updateTimer();
+}
+
+function updateTimer() {
+    setTimeout(() => {
+        if(activeTimer) {
+            let timerValue = parseInt(document.getElementById("secondsRemaining").innerText);
+            document.getElementById("secondsRemaining").innerText = --timerValue;
+            if(timerValue == 0) {
+                alert("Timeout!");
+                player.timeout();
+                resetTimer();
+                return;
+            }
+            updateTimer();
+        }
+    }, 1000);
+}
+
+function resetTimer() {
+    activeTimer = false;
+    document.getElementById("secondsRemaining").innerText = "20";
+}
+
 function enableClicks() {
     [...document.getElementsByClassName("column")].forEach((element) => {
         element.style.pointerEvents = "auto";
