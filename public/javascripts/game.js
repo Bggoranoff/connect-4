@@ -48,6 +48,7 @@ function updateTimer() {
             if(timerValue <= 0) {
                 showNotification("Your time is up!");
                 player.timeout();
+                disableClicks();
                 resetTimer();
             } else {
                 updateTimer();
