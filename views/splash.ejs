@@ -26,7 +26,7 @@
                         Active Rooms
                     </div>
                     <div id="activeRooms" class="statValue noselect">
-                        42
+                        <%- activeRooms %>
                     </div>
                 </div>
                 <div class="stat">
@@ -34,7 +34,7 @@
                         Avg Playtime
                     </div>
                     <div id="averagePlaytime" class="statValue noselect">
-                        02:15
+                        <%- minutes + ":" + seconds %>
                     </div>
                 </div>
                 <div class="stat">
@@ -42,7 +42,7 @@
                         Games Played
                     </div>
                     <div id="totalGames" class="statValue noselect">
-                        1000
+                        <%- totalGames %>
                     </div>
                 </div>
             </div>
