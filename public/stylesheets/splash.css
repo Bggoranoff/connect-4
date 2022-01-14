@@ -161,3 +161,20 @@
 #usernameInput:focus {
     outline: none;
 }
+
+#usernameInput:active {
+    outline: none;
+}
+
+form button:active {
+    background-image: url('/images/splash/buttonSelected.png');
+}
+
+h1::before {
+    content: "Connect";
+    margin-right: -1.5vw;
+}
+
+#rulesButton::after {
+    content: "?";
+}
