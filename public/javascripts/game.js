@@ -74,12 +74,16 @@ function enableClicks() {
         element.style.pointerEvents = "auto";
         element.style.cursor = "pointer";
     });
+    document.getElementById("usernameFirst").style.textShadow = shadowStyle;
+    document.getElementById("usernameSecond").style.textShadow = "none";
 }
 
 function disableClicks() {
     [...document.getElementsByClassName("column")].forEach((element) => {
         element.style.pointerEvents = "none";
     });
+    document.getElementById("usernameFirst").style.textShadow = "none";
+    document.getElementById("usernameSecond").style.textShadow = shadowStyle;
 }
 
 function clickColumn(element) {
