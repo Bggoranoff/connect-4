@@ -1,13 +1,13 @@
 @import "style.css";
 
-#winningScreen {
+#resultScreen {
     display: grid;
     grid-template-rows: 60% 40%;
     width: 100%;
     aspect-ratio: 2/0.91;
 }
 
-#winningSection {
+#resultSection {
     display: grid;
     grid-template-rows: 60% 40%;
     width: 100%;
@@ -19,7 +19,7 @@
     align-items: flex-start;
 }
 
-#winningImage {
+#picture {
     width: 25%;
 }
 
