@@ -161,3 +161,11 @@
 #usernameInput:focus {
     outline: none;
 }
+
+#usernameInput:active {
+    outline: none;
+}
+
+form button:active {
+    background-image: url('/images/splash/buttonSelected.png');
+}

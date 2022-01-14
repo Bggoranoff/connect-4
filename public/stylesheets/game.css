@@ -291,3 +291,7 @@
     width: 100%;
     aspect-ratio: 2/0.7;
 }
+
+form button:active {
+    background-image: url('/images/splash/buttonSelected.png');
+}
