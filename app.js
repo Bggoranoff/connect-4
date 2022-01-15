@@ -133,7 +133,7 @@ wss.on("connection", ws => {
         } else {
             websockets[ws.id].removePlayers();
         }
-        
+        delete websockets[ws.id];
     });
 });
 
