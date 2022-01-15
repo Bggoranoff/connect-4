@@ -3,8 +3,8 @@ const socket = new WebSocket(config.WEB_SOCKET_URL);
 const shadowStyle = "#3498db 1px 1px 7px,".repeat(6).slice(0, -1);
 
 let player = new Player(socket);
-let username = (sessionStorage.getItem("playerUsername") == null || sessionStorage.getItem("playerUsername") == "") 
-    ? "guest" 
+let username = (sessionStorage.getItem("playerUsername") == null || sessionStorage.getItem("playerUsername") == "")
+    ? "guest"
     : sessionStorage.getItem("playerUsername");
 player.setUsername(username);
 
@@ -13,16 +13,16 @@ document.getElementById("losingBlock").style.display = "none";
 document.getElementById("gameBlock").style.display = "none";
 document.getElementById("screenMessage").style.visibility = "visible";
 
-socket.onmessage = function(event) {
+socket.onmessage = function (event) {
     let msg = JSON.parse(event.data);
-    switch(msg.type) {
+    switch (msg.type) {
         case messages.PLAYER_DATA.type: {
             let msg = messages.PLAYER_DATA;
             msg.username = username;
 
             socket.send(JSON.stringify(msg));
         };
-        break;
+            break;
         case messages.BEGIN_GAME.type: {
             document.getElementById("gameBlock").style.display = "block";
             document.getElementById("screenMessage").remove();
@@ -31,7 +31,7 @@ socket.onmessage = function(event) {
             document.getElementById("usernameSecond").innerText = msg.otherUsername;
             player.setSymbol(msg.symbol);
 
-            if(msg.symbol == 1) {
+            if (msg.symbol == 1) {
                 startTimer();
                 enableClicks();
             } else {
@@ -39,45 +39,45 @@ socket.onmessage = function(event) {
                 disableClicks();
             }
         };
-        break;
+            break;
         case messages.VALID_MOVE.type: {
             let symbol = msg.symbol;
             let column = msg.column;
             let row = msg.row;
             visualiseMove(symbol, row, column);
-            switch(msg.turn) {
+            switch (msg.turn) {
                 case "yours": {
                     resetTimer();
                     disableClicks();
                 }
-                break;
+                    break;
                 case "opponents": {
                     startTimer();
                     enableClicks();
                 }
-                break;
+                    break;
             }
-            
+
         };
-        break;
+            break;
         case messages.INVALID_MOVE.type: {
             alert("Invalid move!");
         }
-        break;
+            break;
         case messages.TIMEOUT.type: {
             startTimer();
             enableClicks();
         };
-        break;
+            break;
         case messages.GAME_OVER.type: {
             disableClicks();
-            if(msg.winner === player.getSymbol()) {
+            if (msg.winner === player.getSymbol()) {
                 setTimeout(visualiseWinningScreen, 4000);
             } else {
                 setTimeout(visualiseLosingScreen, 4000);
             }
         }
-        break;
+            break;
         case messages.ABORT_GAME.type: {
             document.getElementsByClassName("rematch")[0].disabled = "true";
             document.getElementsByClassName("rematch")[0].style.animation = "none";
@@ -90,10 +90,10 @@ socket.onmessage = function(event) {
                 });
             });
         };
-        break;
+            break;
         case messages.WANT_REMATCH.type: {
             clearBoard();
-            if(player.getSymbol() === msg.symbol) {
+            if (player.getSymbol() === msg.symbol) {
                 startTimer();
                 enableClicks();
             } else {
@@ -101,6 +101,6 @@ socket.onmessage = function(event) {
                 disableClicks();
             }
         };
-        break;
+            break;
     }
 }

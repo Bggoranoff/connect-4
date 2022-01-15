@@ -10,7 +10,7 @@ var Player = function (socket) {
         socket.send(JSON.stringify(msg));
     };
 
-    var setUsername = function(u) {
+    var setUsername = function (u) {
         username = u;
     };
 
@@ -18,7 +18,7 @@ var Player = function (socket) {
         return username;
     };
 
-    var setSymbol = function(s) {
+    var setSymbol = function (s) {
         symbol = s;
     };
 
@@ -26,12 +26,12 @@ var Player = function (socket) {
         return symbol;
     };
 
-    var timeout = function() {
+    var timeout = function () {
         let msg = messages.TIMEOUT;
         socket.send(JSON.stringify(msg));
     };
 
-    var rematch = function() {
+    var rematch = function () {
         let msg = messages.WANT_REMATCH;
         socket.send(JSON.stringify(msg));
     };

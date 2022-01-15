@@ -3,7 +3,7 @@ const mediaQuery = window.matchMedia('(min-width: 568px)');
 mediaQuery.onchange = (e) => checkDeviceResolution(e);
 
 function checkDeviceResolution(e) {
-    if(!e.matches) {
+    if (!e.matches) {
         alert("Unfortunately, your device resolution is not optimal...");
     }
 }
@@ -13,7 +13,7 @@ checkDeviceResolution(mediaQuery);
 function makeDrop(image) {
     const drop = document.createElement("div");
     drop.className = "drop";
-    
+
     let cloudRect = document.getElementById("title").getBoundingClientRect();
     let leftMin = cloudRect.width / 10;
     let leftMax = 8 * cloudRect.width / 10
@@ -68,8 +68,8 @@ function saveUsername() {
     sessionStorage.setItem("playerUsername", username);
 }
 
-document.getElementById("usernameInput").value = sessionStorage.getItem("playerUsername") == null 
-    ? "" 
+document.getElementById("usernameInput").value = sessionStorage.getItem("playerUsername") == null
+    ? ""
     : sessionStorage.getItem("playerUsername");
 document.getElementById("playButton").addEventListener("click", saveUsername);
 document.getElementById("rulesButton").addEventListener("click", saveUsername);

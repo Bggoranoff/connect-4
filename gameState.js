@@ -35,19 +35,19 @@ var GameState = function () {
         ended = e;
     };
 
-    var getDate = function() {
+    var getDate = function () {
         return date;
     };
 
-    var setDate = function(d) {
+    var setDate = function (d) {
         date = d;
     };
 
-    var getWinner = function() {
+    var getWinner = function () {
         return winner;
     };
 
-    var getEnded = function() {
+    var getEnded = function () {
         return ended;
     };
 
@@ -125,12 +125,12 @@ var GameState = function () {
         );
     };
 
-    var addPlayer = function(player) {
-        if(firstPlayer == null) {
+    var addPlayer = function (player) {
+        if (firstPlayer == null) {
             firstPlayer = player;
             firstPlayer.symbol = 1;
             return firstPlayer.symbol;
-        } else if(secondPlayer == null) {
+        } else if (secondPlayer == null) {
             secondPlayer = player;
             secondPlayer.symbol = 2;
             return secondPlayer.symbol;
@@ -139,7 +139,7 @@ var GameState = function () {
         }
     }
 
-    var removePlayers = function() {
+    var removePlayers = function () {
         firstPlayer = null;
         secondPlayer = null;
     }
@@ -162,9 +162,9 @@ var GameState = function () {
         playerOnTurn = symbol;
     };
 
-    var clear = function() {
-        for(let i = 0; i < board.length; i++) {
-            for(let j = 0; j < board[0].length; j++) {
+    var clear = function () {
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[0].length; j++) {
                 board[i][j] = 0;
             }
         }

@@ -3,7 +3,7 @@ const mediaQuery = window.matchMedia('(min-width: 568px)');
 mediaQuery.onchange = (e) => checkDeviceResolution(e);
 
 function checkDeviceResolution(e) {
-    if(!e.matches) {
+    if (!e.matches) {
         alert("Unfortunately, your device resolution is not optimal...");
     }
 }
@@ -42,10 +42,10 @@ function startTimer() {
 
 function updateTimer() {
     setTimeout(() => {
-        if(activeTimer) {
+        if (activeTimer) {
             let timerValue = parseInt(document.getElementById("secondsRemaining").innerText);
             document.getElementById("secondsRemaining").innerText = --timerValue;
-            if(timerValue <= 0) {
+            if (timerValue <= 0) {
                 showNotification("Your time is up!");
                 player.timeout();
                 disableClicks();
