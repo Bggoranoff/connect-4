@@ -1,5 +1,4 @@
-var GameState = function (id) {
-    var gameId = id;
+var GameState = function () {
 
     var firstPlayer = null;
 
@@ -24,20 +23,32 @@ var GameState = function (id) {
 
     var winner = 0;
 
-    var setWinner = function (winnerSymbol) {
-        this.winner = winnerSymbol;
+    var getLastMove = function () {
+        return lastMove;
     };
 
-    var endGame = function () {
-        this.ended = true;
+    var setWinner = function (winnerSymbol) {
+        winner = winnerSymbol;
+    };
+
+    var setEnded = function (e) {
+        ended = e;
+    };
+
+    var getDate = function() {
+        return date;
+    };
+
+    var setDate = function(d) {
+        date = d;
     };
 
     var getWinner = function() {
-        return this.winner;
+        return winner;
     };
 
     var getEnded = function() {
-        return this.ended;
+        return ended;
     };
 
     var makeMove = function (column, symbol) {
@@ -50,7 +61,7 @@ var GameState = function (id) {
             return false;
         }
 
-        this.mark(symbol, row, column);
+        mark(symbol, row, column);
         setLastMove(row, column);
         return true;
     };
@@ -58,8 +69,8 @@ var GameState = function (id) {
     var mark = function (symbol, row, column) {
         board[row][column] = symbol;
         if (checkForWin()) {
-            this.setWinner(symbol);
-            this.endGame();
+            setWinner(symbol);
+            setEnded(true);
         }
     };
 
@@ -151,10 +162,6 @@ var GameState = function (id) {
         playerOnTurn = symbol;
     };
 
-    var setDate = function(currentDate) {
-        this.date = currentDate;
-    };
-
     var clear = function() {
         for(let i = 0; i < board.length; i++) {
             for(let j = 0; j < board[0].length; j++) {
@@ -165,24 +172,19 @@ var GameState = function (id) {
 
     return {
         removePlayers,
-        date,
         setDate,
+        getDate,
         clear,
-        endGame,
-        winner,
-        board,
-        id,
         getPlayer,
         addPlayer,
-        ended,
-        lastMove,
         makeMove,
         setWinner,
         getWinner,
+        setEnded,
         getEnded,
-        mark,
         setPlayerOnTurn,
-        getPlayerOnTurn
+        getPlayerOnTurn,
+        getLastMove
     };
 };
 

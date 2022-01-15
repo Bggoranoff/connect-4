@@ -26,7 +26,7 @@ const wss = new websocket.Server({ server });
 const websockets = {};
 
 let connectionId = 0;
-let currentGame = new GameState(stats.activeRooms);
+let currentGame = new GameState();
 
 wss.on("connection", ws => {
     ws.id = connectionId++;
@@ -57,7 +57,8 @@ wss.on("connection", ws => {
                     secondMessage.symbol = 3 - playerSymbol;
                     currentGame.getPlayer(3 - playerSymbol).send(JSON.stringify(secondMessage));
                     currentGame.setDate(Date.now());
-                    currentGame = new GameState(stats.activeRooms++);
+                    currentGame = new GameState();
+                    stats.activeRooms++;
                 }
             };
             break;
@@ -66,8 +67,8 @@ wss.on("connection", ws => {
                     if(websockets[ws.id].makeMove(msg.column, playerSymbol)) {
                         let msg = messages.VALID_MOVE;
                         msg.symbol = playerSymbol;
-                        msg.row = websockets[ws.id].lastMove[0];
-                        msg.column = websockets[ws.id].lastMove[1];
+                        msg.row = websockets[ws.id].getLastMove()[0];
+                        msg.column = websockets[ws.id].getLastMove()[1];
                         msg.turn = "yours";
                         ws.send(JSON.stringify(msg));
 
@@ -76,6 +77,11 @@ wss.on("connection", ws => {
                         player.send(JSON.stringify(msg));
 
                         if(websockets[ws.id].getEnded()) {
+
+                            stats.totalGames += 1;
+                            stats.totalPlaytime += Math.round((new Date().getTime() - websockets[ws.id].getDate()) / 1000);
+                            stats.averagePlaytime = Math.round(stats.totalPlaytime / stats.totalGames);
+
                             let winnerSymbol = websockets[ws.id].getWinner();
                             let gameOver = messages.GAME_OVER;
                             gameOver.winner = winnerSymbol;
@@ -109,12 +115,9 @@ wss.on("connection", ws => {
                     websockets[ws.id].getPlayer(playerSymbol).rematch = false;
                     websockets[ws.id].getPlayer(3 - playerSymbol).rematch = false;
 
-                    stats.totalGames += 1;
-                    stats.totalPlaytime += Math.round((new Date().getTime() - websockets[ws.id].date) / 1000);
-                    stats.averagePlaytime = Math.round(stats.totalPlaytime / stats.totalGames);
                     websockets[ws.id].clear();
                     websockets[ws.id].setPlayerOnTurn(rematchMsg.symbol);
-                    websockets[ws.id].ended = false;
+                    websockets[ws.id].setEnded(false);
                 }
             };
             break;
@@ -124,11 +127,6 @@ wss.on("connection", ws => {
     ws.on("close", code => {
         if(websockets[ws.id].getPlayer(3 - playerSymbol) != null) {
             stats.activeRooms = stats.activeRooms - 0.5;
-            stats.totalGames = stats.totalGames + 0.5;
-            if(stats.totalGames < Math.ceil(stats.totalGames)) {
-                stats.totalPlaytime += Math.round((Date.now() - websockets[ws.id].date) / 1000);
-                stats.averagePlaytime = Math.round(stats.totalPlaytime / Math.ceil(stats.totalGames));
-            }
             websockets[ws.id].getPlayer(3 - playerSymbol).send(JSON.stringify(messages.ABORT_GAME));
         } else {
             websockets[ws.id].removePlayers();

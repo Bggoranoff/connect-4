@@ -27,7 +27,7 @@ socket.onmessage = function(event) {
             document.getElementById("gameBlock").style.display = "block";
             document.getElementById("screenMessage").remove();
 
-            document.getElementById("usernameFirst").innerText = player.username;
+            document.getElementById("usernameFirst").innerText = player.getUsername();
             document.getElementById("usernameSecond").innerText = msg.otherUsername;
             player.setSymbol(msg.symbol);
 
@@ -71,7 +71,7 @@ socket.onmessage = function(event) {
         break;
         case messages.GAME_OVER.type: {
             disableClicks();
-            if(msg.winner === player.symbol) {
+            if(msg.winner === player.getSymbol()) {
                 setTimeout(visualiseWinningScreen, 4000);
             } else {
                 setTimeout(visualiseLosingScreen, 4000);
@@ -93,9 +93,7 @@ socket.onmessage = function(event) {
         break;
         case messages.WANT_REMATCH.type: {
             clearBoard();
-            console.log(player.symbol);
-            console.log(msg.symbol);
-            if(player.symbol === msg.symbol) {
+            if(player.getSymbol() === msg.symbol) {
                 startTimer();
                 enableClicks();
             } else {

@@ -2,27 +2,28 @@ var Player = function (socket) {
 
     var username;
 
-    var otherUsername;
-
     var symbol;
 
     var makeMove = function (column) {
-        console.log(column);
         let msg = messages.MAKE_MOVE;
         msg.column = column;
         socket.send(JSON.stringify(msg));
     };
 
     var setUsername = function(u) {
-        this.username = u;
+        username = u;
     };
 
-    var setOtherUsername = function(u) {
-        this.otherUsername = u;
+    var getUsername = function () {
+        return username;
     };
 
     var setSymbol = function(s) {
-        this.symbol = s;
+        symbol = s;
+    };
+
+    var getSymbol = function () {
+        return symbol;
     };
 
     var timeout = function() {
@@ -33,17 +34,15 @@ var Player = function (socket) {
     var rematch = function() {
         let msg = messages.WANT_REMATCH;
         socket.send(JSON.stringify(msg));
-    }
+    };
 
     return {
         rematch,
         timeout,
-        setOtherUsername, 
-        otherUsername,
         setUsername,
-        username,
+        getUsername,
         makeMove,
-        symbol,
-        setSymbol
+        setSymbol,
+        getSymbol
     }
 };

@@ -80,6 +80,10 @@
     width: 50%;
 }
 
+input {
+    text-align: center;
+}
+
 .formItem {
     margin: 5px;
     width: 80%;

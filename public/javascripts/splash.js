@@ -36,7 +36,7 @@ function animate() {
     let rand = 300 + Math.random() * 500;
     setTimeout(() => {
         let rand = Math.random();
-        makeDrop(rand > 0.5 ? "url('images/LastDrop.png')" : "url('images/LasrSnowflake.png')");
+        makeDrop(rand > 0.5 ? "url('images/LastDrop.png')" : "url('images/LastSnowflake.png')");
         animate();
     }, rand);
 }

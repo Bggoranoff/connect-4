@@ -59,7 +59,7 @@ function updateTimer() {
 
 function resetTimer() {
     activeTimer = false;
-    document.getElementById("secondsRemaining").innerText = "5";
+    document.getElementById("secondsRemaining").innerText = "15";
 }
 
 function showNotification(msg) {

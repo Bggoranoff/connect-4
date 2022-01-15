@@ -14,20 +14,12 @@ router.get('/', function(req, res, next) {
 
 /* Pressing the 'PLAY' takes you to this page */
 router.get('/play', function(req, res) {
-  res.render("game.ejs", {root: "./views"});
+  res.sendFile("game.html", {root: "./views"});
 });
 
 /* Pressing the 'HOW TO' takes you to this page */
 router.get('/rules', function(req, res) {
-  res.render("rules.ejs", {});
-});
-
-router.get('/waiting', function(req, res) {
-  res.render("waiting.ejs", {});
-});
-
-router.get('/loss', function(req, res) {
-  res.render("losing.ejs", {});
+  res.sendFile("rules.html", {root: "./views"});
 });
 
 router.get('/stats', function(req, res) {
@@ -35,7 +27,7 @@ router.get('/stats', function(req, res) {
 });
 
 router.get('/*', function(req, res) {
-  res.render("error.ejs", {});
+  res.sendFile("error.html", {root: "./views"});
 });
 
 
