@@ -1,3 +1,3 @@
 var config = {
-    WEB_SOCKET_URL: "ws://localhost:3333",
+    WEB_SOCKET_URL: location.origin.replace(/^http/, 'ws'),
 };
