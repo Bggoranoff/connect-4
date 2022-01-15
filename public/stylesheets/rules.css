@@ -14,15 +14,9 @@
     }
 }
 
-body {
-    font-family: silkscreen;
-    background-color: #bbdefb;
-    animation: bodyBackground 4s linear infinite;
-}
-
 #rulesGrid {
     width: 100%;
-    aspect-ratio: 2/0.96;
+    aspect-ratio: 2/0.91;
     display: grid;
     grid-template-columns: 58% 41.7%;
     grid-row-gap: 5px;

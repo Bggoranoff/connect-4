@@ -1,5 +1,4 @@
-var GameState = function (id) {
-    var gameId = id;
+var GameState = function () {
 
     var firstPlayer = null;
 
@@ -24,20 +23,32 @@ var GameState = function (id) {
 
     var winner = 0;
 
+    var getLastMove = function () {
+        return lastMove;
+    };
+
     var setWinner = function (winnerSymbol) {
-        this.winner = winnerSymbol;
+        winner = winnerSymbol;
     };
 
-    var endGame = function () {
-        this.ended = true;
+    var setEnded = function (e) {
+        ended = e;
     };
 
-    var getWinner = function() {
-        return this.winner;
+    var getDate = function () {
+        return date;
     };
 
-    var getEnded = function() {
-        return this.ended;
+    var setDate = function (d) {
+        date = d;
+    };
+
+    var getWinner = function () {
+        return winner;
+    };
+
+    var getEnded = function () {
+        return ended;
     };
 
     var makeMove = function (column, symbol) {
@@ -50,7 +61,7 @@ var GameState = function (id) {
             return false;
         }
 
-        this.mark(symbol, row, column);
+        mark(symbol, row, column);
         setLastMove(row, column);
         return true;
     };
@@ -58,8 +69,8 @@ var GameState = function (id) {
     var mark = function (symbol, row, column) {
         board[row][column] = symbol;
         if (checkForWin()) {
-            this.setWinner(symbol);
-            this.endGame();
+            setWinner(symbol);
+            setEnded(true);
         }
     };
 
@@ -114,12 +125,12 @@ var GameState = function (id) {
         );
     };
 
-    var addPlayer = function(player) {
-        if(firstPlayer == null) {
+    var addPlayer = function (player) {
+        if (firstPlayer == null) {
             firstPlayer = player;
             firstPlayer.symbol = 1;
             return firstPlayer.symbol;
-        } else if(secondPlayer == null) {
+        } else if (secondPlayer == null) {
             secondPlayer = player;
             secondPlayer.symbol = 2;
             return secondPlayer.symbol;
@@ -128,7 +139,7 @@ var GameState = function (id) {
         }
     }
 
-    var removePlayers = function() {
+    var removePlayers = function () {
         firstPlayer = null;
         secondPlayer = null;
     }
@@ -151,13 +162,9 @@ var GameState = function (id) {
         playerOnTurn = symbol;
     };
 
-    var setDate = function(currentDate) {
-        this.date = currentDate;
-    };
-
-    var clear = function() {
-        for(let i = 0; i < board.length; i++) {
-            for(let j = 0; j < board[0].length; j++) {
+    var clear = function () {
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[0].length; j++) {
                 board[i][j] = 0;
             }
         }
@@ -165,24 +172,19 @@ var GameState = function (id) {
 
     return {
         removePlayers,
-        date,
         setDate,
+        getDate,
         clear,
-        endGame,
-        winner,
-        board,
-        id,
         getPlayer,
         addPlayer,
-        ended,
-        lastMove,
         makeMove,
         setWinner,
         getWinner,
+        setEnded,
         getEnded,
-        mark,
         setPlayerOnTurn,
-        getPlayerOnTurn
+        getPlayerOnTurn,
+        getLastMove
     };
 };
 

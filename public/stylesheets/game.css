@@ -110,12 +110,6 @@
     grid-template-columns: 100%;
 }
 
-/* #firstPlayerAvatar {
-    width: 3.8vw;
-    margin-top: 0.5vw;
-    height: auto;
-} */
-
 #usernameFirst::before {
     content: "";
     background-image: url("/images/avatarOwl.png");
@@ -180,12 +174,6 @@
     margin-top: 0.5vw;
     margin-left: 0.5vw;
 }
-
-/* #secondPlayerAvatar {
-    width: 3.8vw;
-    margin-top: 0.5vw;
-    height: auto;
-} */
 
 #screenMessage {
     width: 99%;
