@@ -128,6 +128,11 @@ var GameState = function (id) {
         }
     }
 
+    var removePlayers = function() {
+        firstPlayer = null;
+        secondPlayer = null;
+    }
+
     var getPlayer = function (symbol) {
         if (symbol === 1) {
             return firstPlayer;
@@ -159,6 +164,7 @@ var GameState = function (id) {
     };
 
     return {
+        removePlayers,
         date,
         setDate,
         clear,
