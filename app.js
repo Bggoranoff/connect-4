@@ -5,7 +5,7 @@ const websocket = require("ws");
 
 const messages = require("./public/javascripts/messages");
 const stats = require("./stats");
-const GameState = require("./gameState");
+const createGame = require("./gameState");
 
 if (process.argv.length < 3) {
     console.log("Error: expected a port as argument");
@@ -26,7 +26,7 @@ const wss = new websocket.Server({ server });
 const websockets = {};
 
 let connectionId = 0;
-let currentGame = new GameState();
+let currentGame = createGame();
 
 wss.on("connection", ws => {
     ws.id = connectionId++;
@@ -57,7 +57,7 @@ wss.on("connection", ws => {
                     secondMessage.symbol = 3 - playerSymbol;
                     currentGame.getPlayer(3 - playerSymbol).send(JSON.stringify(secondMessage));
                     currentGame.setDate(Date.now());
-                    currentGame = new GameState();
+                    currentGame = createGame();
                     stats.activeRooms++;
                 }
             };

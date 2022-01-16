@@ -2,7 +2,7 @@ const socket = new WebSocket(config.WEB_SOCKET_URL);
 
 const shadowStyle = "#3498db 1px 1px 7px,".repeat(6).slice(0, -1);
 
-let player = new Player(socket);
+let player = createPlayer(socket);
 let username = (sessionStorage.getItem("playerUsername") == null || sessionStorage.getItem("playerUsername") == "")
     ? "guest"
     : sessionStorage.getItem("playerUsername");
